@@ -1,25 +1,29 @@
 <html>
 <head>
 	<title>AIMFIRE (Amazing Image Manipulation For Interesting Realworld Expositions)</title>
+	<link rel="stylesheet" type="text/css" href="aimfire.css">
 </head>
 <body style="margin: 0">
 	<canvas id="AmazingCanvas" style="border:3px solid #000000;">Your browser is bad and you should feel bad</canvas>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="aimfire.js"></script>
 	<div class="toolbar" id="toolbar">
-		<form onsubmit="return false">
+		<form class="tool" onsubmit="return false">
 			Pen Size: <input id="pensize" value="5" type="number">
 			<button onclick="setPenSize()">Apply</button>
 		</form>
-		<form onsubmit="return false">
+		<br>
+		<form class="tool" onsubmit="return false">
 			Circle Radius: <input id="circleradius" value="40" type="number">
 			<button onclick="setCircleRadius()">Apply</button>
 		</form>
-		<form onsubmit="return false">
+		<br>
+		<form class="tool" onsubmit="return false">
 			<button onclick="setFuncDrawing()">Free-hand drawing</button>
 		</form>
-		<form onsubmit="return false">
-			<button onclick="setFuncCircle()">Circles</button>
+
+		<form class="tool" onsubmit="return false">
+			<button onclick="currentFunc = drawCircle;">Circles</button>
 		</form>
 	</div>
 
