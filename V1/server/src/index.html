@@ -2,9 +2,21 @@
 <head>
 	<title>AIMFIRE (Amazing Image Manipulation For Interesting Realworld Expositions)</title>
 </head>
-<body>
-	<canvas id="AmazingCanvas" width="800" height="600"></canvas>
+<body style="margin: 0">
+	<canvas id="AmazingCanvas" style="border:3px solid #000000;">Your browser is bad and you should feel bad</canvas>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="aimfire.js"></script>
+	<form>
+		Circle radius: <input id="circleradius" type="number">
+		<button onclick="changeCircleSize(parseInt(document.getElementById('circleradius').value))">change value</button>
+	</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
