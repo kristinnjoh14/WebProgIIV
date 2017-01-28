@@ -5,8 +5,8 @@ var context = canvas.getContext("2d");
 canvas.width = window.innerWidth - 6;
 canvas.height = window.innerHeight - 150;
 
-//Setting initial values
-var penSize = 5;
+//Set initial values for pen size, circle radius, drawing mode and a bool flag needed for free-hand drawing
+var penSize = 5; //this is actually the radius of a point, but nevermind that.
 var draw = false;
 var circleRadius = 40;
 var currentFunc = startDrawing;
@@ -29,7 +29,7 @@ function setPenSize() {
 	}
 }
 
-//the following three handle free-hand drawing
+//the following three functions handle free-hand drawing
 function startDrawing(e) {
 	context.moveTo(e.clientX, e.clientY);
 	draw = true;
@@ -52,6 +52,7 @@ function mouseDraw(e) {
 	}
 }
 
+//draws a circle
 function drawCircle(e) {
 	context.beginPath();
 	context.arc(e.clientX, e.clientY, circleRadius, 0, 2*Math.PI);
@@ -59,14 +60,21 @@ function drawCircle(e) {
 	context.beginPath();
 }
 
+//switches into free-hand drawing mode
 function setFuncDrawing() {
+	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = startDrawing;
+	canvas.addEventListener("mousedown", currentFunc);
 }
 
+//switches into circle drawing mode
 function setFuncCircle() {
+	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = drawCircle;
+	canvas.addEventListener("mousedown", currentFunc);
 }
 
+//sets event listeners
 canvas.addEventListener("mousedown", currentFunc);
 var currentUp = stopDrawing;
 canvas.addEventListener("mouseup", currentUp);
