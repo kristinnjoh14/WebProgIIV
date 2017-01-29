@@ -3,7 +3,7 @@ var canvas = document.getElementById("AmazingCanvas");
 var context = canvas.getContext("2d");
 
 canvas.width = window.innerWidth - 6;
-canvas.height = window.innerHeight - 150;
+canvas.height = window.innerHeight - 110;
 
 //Set initial values for pen size, circle radius, drawing mode and a bool flag needed for free-hand drawing
 var penSize = 5; //this is actually the radius of a point, but nevermind that.
@@ -12,9 +12,30 @@ var circleRadius = 40;
 var currentFunc = startDrawing;
 context.lineWidth = penSize * 2;
 
+var undo = new Array();
+var redo = new Array();
+
+//Redraws everything in the undo array
+//Each element in undo is one object and the first property of each object is its type
+function redraw() {
+	context.clearRect(0,0,canvas.width, canvas.height);
+	for(var i = 0; i < undo.length(); i++) {
+		var object = undo[i];
+		var type = object[0];
+		switch(type) {
+			case "drawing":
+				redrawDrawing(object);
+				break;
+			case "circle":
+				redrawCircle();
+				break;
+		}
+	}
+}
+
 //set radius of circles drawn by drawCircle(e)
 function setCircleRadius() {
-	newRadius = parseInt(document.getElementById("circleradius").value)
+	newRadius = parseInt(document.getElementById("circleradius").value);
 	if(newRadius > 0) {
 		circleRadius = newRadius;
 	}
@@ -22,7 +43,7 @@ function setCircleRadius() {
 
 //set pen size
 function setPenSize() {
-	newSize = parseInt(document.getElementById("pensize").value)
+	newSize = parseInt(document.getElementById("pensize").value);
 	if(newSize > 0) {
 		penSize = newSize;
 		context.lineWidth = penSize*2;
@@ -74,22 +95,10 @@ function setFuncCircle() {
 	canvas.addEventListener("mousedown", currentFunc);
 }
 
-//sets event listeners
+//sets event listeners, initializing drawing mode. The first is not permanent
 canvas.addEventListener("mousedown", currentFunc);
 var currentUp = stopDrawing;
 canvas.addEventListener("mouseup", currentUp);
 var currentMove = mouseDraw;
 canvas.addEventListener("mousemove", currentMove)
 
-
-
-
-/*
-<form id="circle">
-		Circle
-		X = <input type="number" id="circlex">
-		Y = <input type="number" id="circley">
-		Radius = <input type="number" id="circleradius">
-		<button onmousedown="drawCircle()">Draw!</button>
-	</form>
-*/
