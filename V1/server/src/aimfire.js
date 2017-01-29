@@ -74,14 +74,19 @@ function redrawDrawing(drawing) {
 }
 
 //Undo function, by popping from undo and into redo, I remove one object to be redrawn and also store that object
-function undo() {
-	redo.push(undo.pop());
-	redraw();
+//For some reason, undo and redo seem to be invalid functionnames. Probably because they are also variablenames
+function undo1() {
+	if(undo.length > 0) {
+		redo.push(undo.pop());
+		redraw();
+	}
 }
 
-function redo() {
-	undo.push(redo.pop());
-	redraw();
+function redo1() {
+	if(redo.length > 0) {
+		undo.push(redo.pop());
+		redraw();
+	}
 }
 
 //set radius of circles drawn by drawCircle(e)
