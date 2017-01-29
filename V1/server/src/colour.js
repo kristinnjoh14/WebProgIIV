@@ -1,22 +1,19 @@
 
-var colors = ['black', 'yellow', 'green', 'red', 'blue'];
-for(var i = 0, j = cSwitches.length; i < j; i++){
-  var cSwitch = document.createElement('div');
-  cSwitch.className = 'cSwitch';
-  cSwitch.style.backgroundColor = colors[i];
-  cSwitch.addEventListener('click',colourSwitch);
-  document.getElementById('colours').appendChild(cSwitch);
+
+var cSwitch1 = document.getElementsByClassName("cSwitch");
+for(var i = 0, j = cSwitch1.length; i < j; i++){
+  cSwitch1[i].addEventListener('click', colourSwitch,true);
 }
 function setColour(colour){
 	context.fillStyle = colour;
 	context.strokeStyle = colour;
-	var active = document.getElementByClassname('active')[0];
+	var active = document.getElementsByClassName("active");
 	if(active){
-		activ.className = 'cSwitch';
+		active.className = 'cSwitch';
 	}
 }
 function colourSwitch(e){
-	var cSwitch = e.target
-	setColour(cSwitch.style.background-color);
-	cSwitch.className += ' active';
+	var button = e.target
+	setColour(button.style.backgroundColor);
+	button.className += ' active';
 }

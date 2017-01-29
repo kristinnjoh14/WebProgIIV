@@ -9,6 +9,8 @@ canvas.height = window.innerHeight - 110;
 var penSize = 5;	//this is actually the radius of a point, but nevermind that.
 var draw = false;
 var circleRadius = 40;
+var recHeight = 40;
+var recWidth = 40;
 var currentFunc = startDrawing;
 
 
@@ -56,7 +58,12 @@ function redrawCircle(circle) {
 	context.stroke();
 	context.beginPath();
 }
-
+function redrawRectangle(rectangle) {
+	context.beginPath();
+	context.arc(rectangle[1], rectangle[2], recWidth, recHeight);
+	context.stroke();
+	context.beginPath();
+}
 //This one is better off redone, though.
 function redrawDrawing(drawing) {
 	var arr = drawing[1];
@@ -100,6 +107,22 @@ function setCircleRadius(newRadius, redrawing) {
 	}
 	if(!redrawing){
 		undo.push(new Array("circleradius", circleRadius));
+	}
+}
+function setRectangleWidth(newRecWidth, redrawing) {
+	if(newRecWidth > 0) {
+		recWidth = newRecWidth;
+	}
+	if(!redrawing){
+		undo.push(new Array("rectanglewidth", recWidth));
+	}
+}
+function setRectangleHight(newrecHeight, redrawing) {
+	if(newrecHeight > 0) {
+		recHeight = newrecHeight;
+	}
+	if(!redrawing){
+		undo.push(new Array("rectangleheight", recHeight));
 	}
 }
 
@@ -153,6 +176,14 @@ function drawCircle(e) {
 	context.stroke();
 	context.beginPath();
 }
+//draws a circle
+function drawRectangle(e) {
+	context.beginPath();
+	context.rect(e.clientX, e.clientY, recWidth, recHeight);
+	undo.push(new Array("rectangle", e.clientX, e.clientY,recWidth,recHeight));
+	context.stroke();
+	context.beginPath();
+}
 
 //switches into free-hand drawing mode
 function setFuncDrawing() {
@@ -165,6 +196,11 @@ function setFuncDrawing() {
 function setFuncCircle() {
 	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = drawCircle;
+	canvas.addEventListener("mousedown", currentFunc);
+}
+function setFuncRectangle() {
+	canvas.removeEventListener("mousedown", currentFunc);
+	currentFunc = drawRectangle;
 	canvas.addEventListener("mousedown", currentFunc);
 }
 
