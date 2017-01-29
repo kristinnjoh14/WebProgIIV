@@ -3,7 +3,7 @@ var canvas = document.getElementById("AmazingCanvas");
 var context = canvas.getContext("2d");
 
 canvas.width = window.innerWidth - 6;
-canvas.height = window.innerHeight - 110;
+canvas.height = window.innerHeight - 200;
 
 //Set initial values for pen size, circle radius, drawing mode and a bool flag needed for free-hand drawing
 var penSize = 5;	//this is actually the radius of a point, but nevermind that.
@@ -51,7 +51,7 @@ function redraw() {
 				redrawRectangle(object);
 				break;
 			case "rectangleheight":
-				setRectangleHight(object[1],1);
+				setRectangleHeight(object[1],1);
 				break;
 			case "rectanglewidth":
 				setRectangleWidth(object[1],1);
@@ -100,7 +100,6 @@ function undo1() {
 		redo.push(popp);
 		redraw();
 	}
-	console.log(undo);
 }
 
 function redo1() {
@@ -128,7 +127,7 @@ function setRectangleWidth(newRecWidth, redrawing) {
 		undo.push(new Array("rectanglewidth", recWidth));
 	}
 }
-function setRectangleHight(newrecHeight, redrawing) {
+function setRectangleHeight(newrecHeight, redrawing) {
 	if(newrecHeight > 0) {
 		recHeight = newrecHeight;
 	}
