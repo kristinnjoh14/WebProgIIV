@@ -11,10 +11,6 @@ var draw = false;
 var circleRadius = 40;
 var currentFunc = startDrawing;
 
-var cSwitches = document.getElementByClassname('cSwitch');
-for(var i = 0, j = cSwitches.length; i < j; i++){
-	cSwitches[i].addEventListener('click', colourSwitch);
-}
 
 context.lineWidth = penSize * 2;
 //Create Arrays used as stacks of actions taken on canvas. Popping one off undo and into redo
@@ -25,21 +21,6 @@ var redo = new Array();
 undo.push(new Array("pensize", penSize));
 undo.push(new Array("circleradius", circleRadius));
 
-
-function setColour(colour){
-	context.fillStyle = colour;
-	context.strokeStyle = colour;
-	var active = getElementByClassname('activ')[0];
-	if(activ){
-		activ.className = 'cSwitch';
-	}
-}
-function colourSwitch(e){
-	var cSwitch = e.target
-	setColour(cSwitch.style.backgroundColor);
-	cSwitch.className += ' activ';
-}
-
 //Redraws everything in the undo array
 //Each element in undo is one object and the first property of each object is its type
 function redraw() {
@@ -48,7 +29,7 @@ function redraw() {
 	var tempPenSize = penSize;
 	for(var i = 0; i < undo.length; i++) {			//Loop through each object stored in undo
 		var object = undo[i];							//They can be objects drawn to the canvas or changes to settings
-		var type = object[0];							//Redraw them to the canvas and reapply all settings 
+		var type = object[0];							//Redraw them to the canvas and reapply all settings
 		switch(type) {									//as they were when originally drawn
 			case "drawing":
 				redrawDrawing(object);
@@ -69,7 +50,7 @@ function redraw() {
 }
 
 //Making a redraw makes me want to refactor the original draw :/
-function redrawCircle(circle) {	
+function redrawCircle(circle) {
 	context.beginPath();
 	context.arc(circle[1], circle[2], circleRadius, 0, 2*Math.PI);
 	context.stroke();

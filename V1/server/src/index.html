@@ -7,6 +7,7 @@
 	<canvas id="AmazingCanvas" style="border:3px solid #000000;">Your browser is bad and you should feel bad</canvas>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="aimfire.js"></script>
+	<script type="text/javascript" src="colour.js"></script>
 	<div class="toolbar" id="toolbar">
 		<form class="tool" onsubmit="return false">
 			Pen Size: <input id="pensize" value="5" type="number">
@@ -28,13 +29,7 @@
 		<form class="tool" onsubmit="return false">
 			<button onclick="redraw()">Redraw</button>
 		</form>
-		<div class="tool" id="colours">
-			<div class="cSwitch activ" style="background-color: red"></div>
-			<div class="cSwitch" style="background-color: green"></div>
-			<div class="cSwitch" style="background-color: yellow"></div>
-			<div class="cSwitch" style="background-color: blue"></div>
-			<div class="cSwitch" style="background-color: black"></div>
-		</div>
+		<div class="tool" id="colours"></div>
 	</div>
 
 </body>
