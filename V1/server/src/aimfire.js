@@ -27,7 +27,7 @@ function redraw() {
 				redrawDrawing(object);
 				break;
 			case "circle":
-				redrawCircle();
+				redrawCircle(object);
 				break;
 		}
 	}
