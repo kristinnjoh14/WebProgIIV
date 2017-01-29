@@ -60,8 +60,33 @@ function redrawCircle(circle) {
 //This one is better off redone, though.
 function redrawDrawing(drawing) {
 	var arr = drawing[1];
+	context.moveTo(arr[0][0], arr[0][1]);
 	for(var i = 0; i < arr.length; i++) {
-		var thisstep = arr[i]
+		var x = arr[i][0];
+		var y = arr[i][1];
+		context.lineTo(x, y);
+		context.stroke();
+		context.arc(x, y, penSize, 0, 2*Math.PI);
+		context.fill();
+		context.beginPath();
+		context.moveTo(x, y);
+	}
+	context.beginPath();
+}
+
+//Undo function, by popping from undo and into redo, I remove one object to be redrawn and also store that object
+//For some reason, undo and redo seem to be invalid functionnames. Probably because they are also variablenames
+function undo1() {
+	if(undo.length > 0) {
+		redo.push(undo.pop());
+		redraw();
+	}
+}
+
+function redo1() {
+	if(redo.length > 0) {
+		undo.push(redo.pop());
+		redraw();
 	}
 }
 
@@ -91,24 +116,29 @@ var lastDrawing = new Array();
 //the following three functions handle free-hand drawing
 function startDrawing(e) {
 	context.moveTo(e.clientX, e.clientY);
-
+	lastDrawing.push(new Array(e.clientX, e.clientY));
 	draw = true;
 	mouseDraw(e);
 }
 
 function stopDrawing(e) {
-	draw = false
-	context.beginPath();
+	if(draw) {
+		context.beginPath();
+		undo.push(new Array("drawing", lastDrawing))
+		lastDrawing = new Array();
+		draw = false
+	}
 }
 
 function mouseDraw(e) {
 	if(draw){
 		context.lineTo(e.clientX, e.clientY);
+		lastDrawing.push(new Array(e.clientX, e.clientY));
 		context.stroke();
 		context.arc(e.clientX, e.clientY, penSize, 0, 2*Math.PI);
 		context.fill();
 		context.beginPath();
-		context.moveTo(e.clientX,e.clientY);
+		context.moveTo(e.clientX, e.clientY);
 	}
 }
 
