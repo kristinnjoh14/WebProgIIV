@@ -1,10 +1,11 @@
 //setting up canvas
 var canvas = document.getElementById("AmazingCanvas");
 var context = canvas.getContext("2d");
+//Hardcoded bcoz we´re out of time!
 context.font = "30px Arial";
 
 canvas.width = window.innerWidth - 6;
-canvas.height = window.innerHeight - 200;
+canvas.height = window.innerHeight - 220;
 
 //Set initial values for pen size, circle radius, drawing mode and a bool flag needed for free-hand drawing
 var penSize = 5;	//this is actually the radius of a point, but nevermind that.
