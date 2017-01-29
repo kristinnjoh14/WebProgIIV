@@ -45,8 +45,8 @@ function redraw() {
 				break;
 		}
 	}
-	setPenSize(tempPenSize);							//Restore global settings
-	setCircleRadius(tempCircleRadius);
+	setPenSize(tempPenSize, 1);							//Restore global settings
+	setCircleRadius(tempCircleRadius, 1);
 }
 
 //Making a redraw makes me want to refactor the original draw :/
@@ -78,14 +78,17 @@ function redrawDrawing(drawing) {
 //For some reason, undo and redo seem to be invalid functionnames. Probably because they are also variablenames
 function undo1() {
 	if(undo.length > 0) {
-		redo.push(undo.pop());
+		var popp = undo.pop();
+		redo.push(popp);
 		redraw();
 	}
+	console.log(undo);
 }
 
 function redo1() {
 	if(redo.length > 0) {
-		undo.push(redo.pop());
+		var popp = redo.pop();
+		undo.push(popp);
 		redraw();
 	}
 }
