@@ -10,10 +10,30 @@ var penSize = 5; //this is actually the radius of a point, but nevermind that.
 var draw = false;
 var circleRadius = 40;
 var currentFunc = startDrawing;
+
+var cSwitches = document.getElementByClassname('cSwitch');
+for(var i = 0, j = cSwitches.length; i < j; i++){
+	cSwitches[i].addEventListener('click', colourSwitch);
+}
+
 context.lineWidth = penSize * 2;
 
 var undo = new Array();
 var redo = new Array();
+
+function setColour(colour){
+	context.fillStyle = colour;
+	context.strokeStyle = colour;
+	var active = getElementByClassname('activ')[0];
+	if(activ){
+		activ.className = 'cSwitch';
+	}
+}
+function colourSwitch(e){
+	var cSwitch = e.target
+	setColour(cSwitch.style.backgroundColor);
+	cSwitch.className += ' activ';
+}
 
 //Redraws everything in the undo array
 //Each element in undo is one object and the first property of each object is its type
@@ -101,4 +121,3 @@ var currentUp = stopDrawing;
 canvas.addEventListener("mouseup", currentUp);
 var currentMove = mouseDraw;
 canvas.addEventListener("mousemove", currentMove)
-

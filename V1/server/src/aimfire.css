@@ -8,7 +8,7 @@
   float: right;
   background-color: grey;
 }
-.switch{
+.cSwitch{
   height: 30px;
   width: 30px;
   border-radius: 15px;
@@ -16,6 +16,6 @@
   margin-left: 15px;
   background-color: thebos;
 }
-.switch .activ{
+.cSwitch .activ{
   border: 4px solid white;
 }
