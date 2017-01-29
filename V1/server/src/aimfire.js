@@ -1,6 +1,7 @@
 //setting up canvas
 var canvas = document.getElementById("AmazingCanvas");
 var context = canvas.getContext("2d");
+context.font = "30px Arial";
 
 canvas.width = window.innerWidth - 6;
 canvas.height = window.innerHeight - 200;
@@ -12,6 +13,7 @@ var circleRadius = 40;
 var recHeight = 40;
 var recWidth = 40;
 var currentFunc = startDrawing;
+var text = "Hello, world!"
 var settingNames = new Array("pensize", "circleradius", "rectangleheight", "rectanglewidth");
 
 
@@ -57,6 +59,8 @@ function redraw() {
 			case "rectanglewidth":
 				setRectangleWidth(object[1],1);
 				break;
+			case "text":
+				redrawText(object);
 		}
 	}
 	setPenSize(tempPenSize, 1);							//Restore global settings
@@ -91,6 +95,11 @@ function redrawDrawing(drawing) {
 		context.moveTo(x, y);
 	}
 	context.beginPath();
+}
+
+//redraws text
+function redrawText(Text) {
+	context.fillText(Text[1],Text[2],Text[3]);
 }
 
 //Undo function, by popping from undo and into redo, I remove one object to be redrawn and also store that object
@@ -141,6 +150,9 @@ function setRectangleHeight(newrecHeight, redrawing) {
 	if(!redrawing){
 		undo.push(new Array("rectangleheight", recHeight));
 	}
+}
+function setText(newText) {
+	text = newText;
 }
 
 //set pen size
@@ -193,7 +205,8 @@ function drawCircle(e) {
 	context.stroke();
 	context.beginPath();
 }
-//draws a circle
+
+//draws a rectangle
 function drawRectangle(e) {
 	context.beginPath();
 	context.rect(e.clientX, e.clientY, recWidth, recHeight);
@@ -202,25 +215,36 @@ function drawRectangle(e) {
 	context.beginPath();
 }
 
+//draws text
+function drawText(e) {
+	context.fillText(text,e.clientX,e.clientY);
+	undo.push(new Array("text", text, e.clientX, e.clientY))
+}
+
 //switches into free-hand drawing mode
 function setFuncDrawing() {
 	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = startDrawing;
 	canvas.addEventListener("mousedown", currentFunc);
 }
-
 //switches into circle drawing mode
 function setFuncCircle() {
 	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = drawCircle;
 	canvas.addEventListener("mousedown", currentFunc);
 }
+//switches into rectangle drawing mode
 function setFuncRectangle() {
 	canvas.removeEventListener("mousedown", currentFunc);
 	currentFunc = drawRectangle;
 	canvas.addEventListener("mousedown", currentFunc);
 }
-
+//switches into text drawing mode
+function setFuncText() {
+	canvas.removeEventListener("mousedown", currentFunc);
+	currentFunc = drawText;
+	canvas.addEventListener("mousedown", currentFunc);
+}
 //sets event listeners, initializing drawing mode. The first is not permanent
 canvas.addEventListener("mousedown", currentFunc);
 var currentUp = stopDrawing;
