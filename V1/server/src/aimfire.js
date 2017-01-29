@@ -73,6 +73,17 @@ function redrawDrawing(drawing) {
 	context.beginPath();
 }
 
+//Undo function, by popping from undo and into redo, I remove one object to be redrawn and also store that object
+function undo() {
+	redo.push(undo.pop());
+	redraw();
+}
+
+function redo() {
+	undo.push(redo.pop());
+	redraw();
+}
+
 //set radius of circles drawn by drawCircle(e)
 function setCircleRadius(newRadius, redrawing) {
 	if(newRadius > 0) {
