@@ -12,6 +12,7 @@ var circleRadius = 40;
 var recHeight = 40;
 var recWidth = 40;
 var currentFunc = startDrawing;
+var settingNames = new Array("pensize", "circleradius", "rectangleheight", "rectanglewidth");
 
 
 context.lineWidth = penSize * 2;
@@ -97,6 +98,9 @@ function redrawDrawing(drawing) {
 function undo1() {
 	if(undo.length > 0) {
 		var popp = undo.pop();
+		if(settingNames.includes(popp[0])) {
+			undo1();
+		}
 		redo.push(popp);
 		redraw();
 	}
@@ -105,6 +109,9 @@ function undo1() {
 function redo1() {
 	if(redo.length > 0) {
 		var popp = redo.pop();
+		if(settingNames.includes(popp[0])) {
+			redo1();
+		}
 		undo.push(popp);
 		redraw();
 	}
