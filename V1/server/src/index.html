@@ -10,12 +10,12 @@
 	<div class="toolbar" id="toolbar">
 		<form class="tool" onsubmit="return false">
 			Pen Size: <input id="pensize" value="5" type="number">
-			<button onclick="setPenSize()">Apply</button>
+			<button onclick="setPenSize(parseInt(document.getElementById(pensize').value))">Apply</button>
 		</form>
 		<br>
 		<form class="tool" onsubmit="return false">
 			Circle Radius: <input id="circleradius" value="40" type="number">
-			<button onclick="setCircleRadius()">Apply</button>
+			<button onclick="setCircleRadius(parseInt(document.getElementById('circleradius').value))">Apply</button>
 		</form>
 		<br>
 		<form class="tool" onsubmit="return false">
