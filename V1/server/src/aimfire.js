@@ -16,8 +16,8 @@ context.lineWidth = penSize * 2;
 var undo = new Array();
 var redo = new Array();
 //Initializing settings for redrawing purposes
-undo.push({"pensize", penSize});
-undo.push({"circleradius", circleRadius});
+undo.push(new Array("pensize", penSize));
+undo.push(new Array("circleradius", circleRadius));
 
 
 //Redraws everything in the undo array
@@ -58,7 +58,8 @@ function redrawCircle(circle) {
 
 //This one is better off redone, though.
 function redrawDrawing(drawing) {
-	for(var i = 0; i < drawing.length(); i++) {
+	var arr = drawing[1];
+	for(var i = 0; i < arr.length(); i++) {
 
 	}
 }
@@ -78,10 +79,12 @@ function setPenSize(newSize) {
 	}
 }
 
-var lastDrawing = {};
+//Stores each drawing as it is made and is pushed in its entirety into undo
+var lastDrawing = new Array();
 //the following three functions handle free-hand drawing
 function startDrawing(e) {
 	context.moveTo(e.clientX, e.clientY);
+
 	draw = true;
 	mouseDraw(e);
 }
@@ -106,7 +109,7 @@ function mouseDraw(e) {
 function drawCircle(e) {
 	context.beginPath();
 	context.arc(e.clientX, e.clientY, circleRadius, 0, 2*Math.PI);
-	undo.push({"circle", e.clientX, e.clientY, circleRadius});
+	undo.push(new Array("circle", e.clientX, e.clientY, circleRadius));
 	context.stroke();
 	context.beginPath();
 }
