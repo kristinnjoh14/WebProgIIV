@@ -26,7 +26,7 @@ function redraw() {
 	context.clearRect(0,0,canvas.width, canvas.height); //Clear the canvas
 	var tempCircleRadius = circleRadius;				//Store global settings
 	var tempPenSize = penSize;
-	for(var i = 0; i < undo.length(); i++) {			//Loop through each object stored in undo
+	for(var i = 0; i < undo.length; i++) {			//Loop through each object stored in undo
 		var object = undo[i];							//They can be objects drawn to the canvas or changes to settings
 		var type = object[0];							//Redraw them to the canvas and reapply all settings 
 		switch(type) {									//as they were when originally drawn
@@ -37,10 +37,10 @@ function redraw() {
 				redrawCircle(object);
 				break;
 			case "pensize":
-				setPenSize(object[1]);
+				setPenSize(object[1], 1);
 				break;
 			case "circleradius":
-				setCircleRadius(object[1]);
+				setCircleRadius(object[1], 1);
 				break;
 		}
 	}
@@ -59,23 +59,29 @@ function redrawCircle(circle) {
 //This one is better off redone, though.
 function redrawDrawing(drawing) {
 	var arr = drawing[1];
-	for(var i = 0; i < arr.length(); i++) {
-
+	for(var i = 0; i < arr.length; i++) {
+		var thisstep = arr[i]
 	}
 }
 
 //set radius of circles drawn by drawCircle(e)
-function setCircleRadius(newRadius) {
+function setCircleRadius(newRadius, redrawing) {
 	if(newRadius > 0) {
 		circleRadius = newRadius;
+	}
+	if(!redrawing){
+		undo.push(new Array("circleradius", circleRadius));
 	}
 }
 
 //set pen size
-function setPenSize(newSize) {
+function setPenSize(newSize, redrawing) {
 	if(newSize > 0) {
 		penSize = newSize;
 		context.lineWidth = penSize*2;
+	}
+	if(!redrawing) {
+		undo.push(new Array("pensize", penSize));
 	}
 }
 
