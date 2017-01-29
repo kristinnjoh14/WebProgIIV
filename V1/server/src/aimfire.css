@@ -1,3 +1,21 @@
-.tool {
-	display: inline-block;
+.tools{
+  display: inline-block;
+}
+.toolbar{
+  background-color: grey;
+}
+#colours{
+  float: right;
+  background-color: grey;
+}
+.switch{
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-left: 15px;
+  background-color: thebos;
+}
+.switch .activ{
+  border: 4px solid white;
 }
