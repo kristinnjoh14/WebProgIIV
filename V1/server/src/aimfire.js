@@ -22,6 +22,8 @@ var redo = new Array();
 //Initializing settings for redrawing purposes
 undo.push(new Array("pensize", penSize));
 undo.push(new Array("circleradius", circleRadius));
+undo.push(new Array("rectanglewidth", recWidth));
+undo.push(new Array("rectangleheight", recHeight));
 
 //Redraws everything in the undo array
 //Each element in undo is one object and the first property of each object is its type
@@ -45,6 +47,15 @@ function redraw() {
 			case "circleradius":
 				setCircleRadius(object[1], 1);
 				break;
+			case "rectangle":
+				redrawRectangle(object);
+				break;
+			case "rectangleheight":
+				setRectangleHight(object[1],1);
+				break;
+			case "rectanglewidth":
+				setRectangleWidth(object[1],1);
+				break;
 		}
 	}
 	setPenSize(tempPenSize, 1);							//Restore global settings
@@ -60,7 +71,7 @@ function redrawCircle(circle) {
 }
 function redrawRectangle(rectangle) {
 	context.beginPath();
-	context.arc(rectangle[1], rectangle[2], recWidth, recHeight);
+	context.rect(rectangle[1], rectangle[2], recWidth, recHeight);
 	context.stroke();
 	context.beginPath();
 }
