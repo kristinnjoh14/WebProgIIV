@@ -9,7 +9,12 @@
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="aimfire.js"></script>
 	<script type="text/javascript" src="colour.js"></script>
+	<script type="text/javascript" src="save.js"></script>
 	<div class="toolbar" id="toolbar">
+		<form class="tool" onsubmit="return false">
+			<button onclick="saveImage()">Save</button>
+		</form>
+		<br>
 		<form class="tool" onsubmit="return false">
 			Pen Size: <input id="pensize" value="5" type="number">
 			<button onclick="setPenSize(parseInt(document.getElementById('pensize').value), 0)">Apply</button>
