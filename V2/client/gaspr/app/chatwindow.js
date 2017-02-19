@@ -1,4 +1,4 @@
-System.register(['angular2/core', "socket.io-client"], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,40 +10,21 @@ System.register(['angular2/core', "socket.io-client"], function(exports_1, conte
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, io;
+    var core_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (io_1) {
-                io = io_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.username = "Kiddi";
-                    this.socket = io("http://localhost:8080/");
-                    this.socket.on("connect", function () {
-                        console.log("Successfully connected to server.");
-                    });
                 }
-                AppComponent.prototype.onLogin = function () {
-                    var _this = this;
-                    this.socket.emit("adduser", this.username, function (succeeded) {
-                        if (!succeeded) {
-                            _this.loginFailed = true;
-                        }
-                        else {
-                            console.log("You have successfully logged in");
-                        }
-                    });
-                };
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: "<h1>Please choose a username to get started</h1>\n    <form onsubmit=\"onLogin()\">\n        Username: <input ([ngModel])=\"username\" placeholder=\"username\" type=\"text\" >\n    </form>\n    <p>{{username}}</p>\n    <p *ngIf=\"loginFailed\">Sorry, that username is taken</p>"
+                        selector: 'chatwindow',
+                        template: '<p>blablabla</p>'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
@@ -53,4 +34,4 @@ System.register(['angular2/core', "socket.io-client"], function(exports_1, conte
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=chatwindow.js.map
