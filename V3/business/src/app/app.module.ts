@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SellersService } from './sellers.service';
 import { DetailsComponent } from './details/details.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'seller/:id', component: DetailsComponent},
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent
+    DetailsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

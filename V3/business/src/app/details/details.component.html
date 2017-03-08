@@ -4,6 +4,10 @@
 
 <ul>
   <li *ngFor = "let p of productlist">
-    {{p.name}}<br><img id="prodImgs" src="{{p.imagePath}}" alt="Image of the product" />
+    {{p.name}}<br>
+    Verð: {{p.price}} kr.
+    <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
+    <p *ngIf="p.quantityInStock==0">Varan er uppseld!</p>
+    <img id="prodImgs" src="{{p.imagePath}}" alt="Image of the product" />
   </li>
 </ul>
