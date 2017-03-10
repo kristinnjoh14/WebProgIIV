@@ -1,9 +1,9 @@
 <p>Nafn: {{name}}</p>
 <p>Bransi: {{category}}</p>
 <img id="detailsImgs" src="{{imgpath}}" alt="Picture of the seller" />
-
+<button><a href="/seller/:id/addproduct">Bæta við vöru</a></button>
 <tabset>
-  <tab heading="Allar vorur">
+  <tab heading="Allar vörur">
     <ul>
       <li *ngFor = "let p of productlist">
         {{p.name}}<br>
@@ -14,7 +14,7 @@
       </li>
     </ul>
   </tab>  
-  <tab heading="Topp tiu vorur" onselect="console.log('what the shit, man\n')">
+  <tab heading="Topp tíu vörur" onselect="console.log('what the shit, man\n')">
     <app-top-ten></app-top-ten>
   </tab>
 </tabset>

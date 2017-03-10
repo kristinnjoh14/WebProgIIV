@@ -11,11 +11,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { TopTenComponent } from './top-ten/top-ten.component';
+import { AddSellerComponent } from './add-seller/add-seller.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'seller/:id', component: DetailsComponent},
+  { path: 'addseller', component: AddSellerComponent },
+  { path: 'seller/:id/addproduct', component: AddProductComponent},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -27,7 +31,9 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    TopTenComponent
+    TopTenComponent,
+    AddSellerComponent,
+    AddProductComponent
   ],
   imports: [
     AlertModule.forRoot(),    //ng2-bootstrap

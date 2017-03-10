@@ -1,5 +1,13 @@
+<button><a href="/addseller">Bæta við seljanda</a></button>
 <ul>
-  <li *ngFor = "let s of sellers">
-    <a href= "seller/{{s.id}}">{{s.name}}<br><img id="homeImgs" src="{{s.imagePath}}" alt="Image of the seller" /></a> 
-  </li>
+  <table class="table-striped">
+    <thead><th>Nafn seljanda</th><th>Flokkur</th></thead>
+    <tbody *ngFor = "let s of sellers">
+      <tr>
+      <th><a href="/seller/{{s.id}}">{{s.name}}</a></th>
+      <th><a href="/seller/{{s.id}}">{{s.category}}</a></th>
+      <!---<th><a href="/seller/{{s.id}}"><img id="homeImgs" src="{{s.imagePath}}" alt="Image of the seller" /></a></th !-->
+      </tr>
+    </tbody> 
+  </table>
 </ul>

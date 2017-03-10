@@ -21,9 +21,6 @@ export class DetailsComponent implements OnInit {
       this.productlist = result;
     });
   }
-  alertMe() {
-    console.log("What the shit, man\n");
-  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
