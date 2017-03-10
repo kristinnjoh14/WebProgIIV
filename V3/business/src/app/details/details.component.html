@@ -1,13 +1,20 @@
 <p>Nafn: {{name}}</p>
 <p>Bransi: {{category}}</p>
-<img id="detailsImgs" src="{{imgpath}}" alt="Picture of the seller">
+<img id="detailsImgs" src="{{imgpath}}" alt="Picture of the seller" />
 
-<ul>
-  <li *ngFor = "let p of productlist">
-    {{p.name}}<br>
-    Verð: {{p.price}} kr.
-    <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
-    <p *ngIf="p.quantityInStock==0">Varan er uppseld!</p>
-    <img id="prodImgs" src="{{p.imagePath}}" alt="Image of the product" />
-  </li>
-</ul>
+<tabset>
+  <tab heading="Allar vorur">
+    <ul>
+      <li *ngFor = "let p of productlist">
+        {{p.name}}<br>
+        Verð: {{p.price}} kr.
+        <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
+        <p *ngIf="p.quantityInStock==0">Varan er uppseld!</p>
+        <img id="prodImgs" src="{{p.imagePath}}" alt="Image of the product" />
+      </li>
+    </ul>
+  </tab>  
+  <tab heading="Topp tiu vorur" onselect="console.log('what the shit, man\n')">
+    <app-top-ten></app-top-ten>
+  </tab>
+</tabset>

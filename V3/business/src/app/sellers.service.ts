@@ -10,7 +10,7 @@ export interface Seller {
   imagePath : string;
 }
 
-export interface Productlist {
+export interface Product {
   id : number;
   name : string;
   price : number;
@@ -34,9 +34,9 @@ export class SellersService {
       return <Seller> response.json();
     });
   }
-  getProductsBySellerId(id : number) : Observable<Productlist> {
+  getProductsBySellerId(id : number) : Observable<Product[]> {
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map(response => {
-      return <Productlist> response.json();
+      return <Product[]> response.json();
     });
   }
 
