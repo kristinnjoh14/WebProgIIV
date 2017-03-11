@@ -1,14 +1,16 @@
 <h3>
   Bæta við seljanda
 </h3>
+{{diagnostic}}
 <form (submit)="validateSeller()">
-  <input type="text" placeholder="Nafn seljanda" ng-model="newSeller.name">
+  <input type="text" placeholder="Nafn seljanda" required
+    [(ng-model)]="newSeller.name">
   Nafn verslunarinnar/fyrirtækisins/aðilans sem þú ert að skrá
   (krafist)<br>
-  <input type="text" placeholder="Flokkur" ng-model="newSeller.category">
+  <input type="text" placeholder="Flokkur" [(ng-model)]="newSeller.category">
   Sá flokkur sem að vörur eða þjónusta seljanda falla undir
   (ekki krafist)<br>
-  <input type="text" placeholder="Myndslóð" ng-model="newSeller.imagePath">
+  <input type="text" placeholder="Myndslóð" [(ng-model)]="newSeller.imagePath">
   Vefslóð að mynd af seljandanum (ekki krafist) <br>
   <p>{{newSeller.name}}</p><br>
   <p>{{newSeller.category}}</p><br>

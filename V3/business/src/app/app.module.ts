@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SellersService } from './sellers.service';
 import { DetailsComponent } from './details/details.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { TopTenComponent } from './top-ten/top-ten.component';
