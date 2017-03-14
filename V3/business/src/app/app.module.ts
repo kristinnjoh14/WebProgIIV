@@ -21,6 +21,7 @@ import { CategorysComponent } from './categorys/categorys.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: ':category', component: CategorysComponent },
   { path: 'seller/:id', component: DetailsComponent},
   { path: 'addseller', component: AddSellerComponent },
   { path: 'seller/:id/editseller', component: EditSellerComponent},

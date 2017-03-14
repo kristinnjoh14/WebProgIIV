@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { SellersService, Seller } from './../sellers.service';
 @Component({
   selector: 'app-categorys',
   templateUrl: './categorys.component.html',
