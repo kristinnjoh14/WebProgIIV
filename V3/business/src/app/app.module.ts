@@ -15,7 +15,8 @@ import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditSellerComponent } from './edit-seller/edit-seller.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
-import { ToastrModule } from 'toastr-ng2'
+import { ToastrModule } from 'toastr-ng2';
+import { 404componentComponent } from './404component/404component.component'
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     AddSellerComponent,
     AddProductComponent,
     EditSellerComponent,
-    EditProductComponent
+    EditProductComponent,
+    404componentComponent
   ],
   imports: [
     AlertModule.forRoot(),    //ng2-bootstrap

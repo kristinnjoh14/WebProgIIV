@@ -38,6 +38,7 @@ describe('Service: SellersService', () => {
   }
   it('should return a list of all sellers',() => {
     setupConnections(backend,{
+      body:{
         data: [
           {
           id : 1;
@@ -57,7 +58,8 @@ describe('Service: SellersService', () => {
           category : 'evenMoreBoringStuff';
           imagePath : 'someOtherDifferentpath';
           }
-        ],
+        ]
+        },
         status: 200
     });
 
@@ -70,6 +72,7 @@ describe('Service: SellersService', () => {
   })
   it('should return a seller',() => {
     setupConnections(backend,{
+      body: {
         data: [
           {
           id : 1;
@@ -89,7 +92,8 @@ describe('Service: SellersService', () => {
           category : 'evenMoreBoringStuff';
           imagePath : 'someOtherDifferentpath';
           }
-        ],
+        ]
+        },
         status: 200
     });
 
@@ -102,6 +106,7 @@ describe('Service: SellersService', () => {
 
   it('should return a list of all products with that sellers ID',() => {
     setupConnections(backend,{
+      body: {
         data: [
         {
         id: 1;
@@ -113,7 +118,8 @@ describe('Service: SellersService', () => {
           quantityInStock: 3;
           imagePath: 'path';
           }
-        ],
+        ]
+        },
         status: 200
     });
 

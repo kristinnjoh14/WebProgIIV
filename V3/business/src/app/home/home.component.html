@@ -3,9 +3,9 @@
     <thead><th>Nafn seljanda</th><th>Flokkur</th></thead>
     <tbody *ngFor = "let s of sellers">
       <tr>
-      <th><a href="/seller/{{s.id}}">{{s.name}}</a></th>
-      <th><a href="/seller/{{s.id}}">{{s.category}}</a></th>
+      <div class ="col-sm-4"><th><a href="/seller/{{s.id}}">{{s.name}}</a></th></div>
+      <div class ="col-sm-5"><th><a href="/seller/{{s.id}}">{{s.category}}</a></th></div>
       <!---<th><a href="/seller/{{s.id}}"><img id="homeImgs" src="{{s.imagePath}}" alt="Image of the seller" /></a></th !-->
       </tr>
-    </tbody> 
+    </tbody>
   </table>
