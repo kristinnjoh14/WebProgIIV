@@ -14,11 +14,15 @@ export class DetailsComponent implements OnInit {
   category : string;
   productlist : Product[];
   leaveThisPage : boolean = false;
+  noProducts : boolean = false;
   constructor(private route: ActivatedRoute, private service: SellersService) {}
 
   getSellerProducts() {
     this.service.getProductsBySellerId(this.id).subscribe(result => {
       this.productlist = result;
+      if(this.productlist.length == 0) {
+        this.noProducts = true;
+      }
     });
   }
   ngOnInit() {

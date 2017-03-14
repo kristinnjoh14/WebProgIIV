@@ -6,6 +6,7 @@
 <button><a href="/seller/{{id}}/editseller">Breyta seljanda</a></button>
 <tabset>
   <tab heading="Allar vörur">
+    <h4 *ngIf="noProducts">Seljandi hefur engar vörur skráðar</h4>
     <ul>
       <li *ngFor = "let p of productlist">
         {{p.name}}  <button><a href="/seller/{{id}}/editproduct/{{p.id}}">Breyta vöru</a></button><br>

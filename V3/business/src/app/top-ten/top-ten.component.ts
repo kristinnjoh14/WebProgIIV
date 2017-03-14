@@ -10,6 +10,7 @@ import { Product, SellersService } from './../sellers.service';
 export class TopTenComponent implements OnInit {
   id : number;
   topProducts : Product[] = [];
+  noProducts : boolean = false;
   constructor(private route : ActivatedRoute, 
   private service : SellersService) { }
   ngOnInit() {
@@ -20,6 +21,9 @@ export class TopTenComponent implements OnInit {
       this.topProducts = result.sort(function(a,b) {
       return (a.quantitySold > b.quantitySold) ? -1 : 
       ((b.quantitySold > a.quantitySold) ? 1 : 0);} ).slice(0,10);
+      if(this.topProducts.length == 0) {
+        this.noProducts = true;
+      }
     });
   }
 
