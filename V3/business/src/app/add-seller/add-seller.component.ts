@@ -16,8 +16,8 @@ export class AddSellerComponent implements OnInit {
     }
     else {
       this.service.postSeller(this.newSeller).subscribe(result => {
-      this.postedSeller = result;      
-    });
+        this.postedSeller = result;      
+      });
     }
   }
   ngOnInit() {

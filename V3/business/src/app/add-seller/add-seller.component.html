@@ -2,16 +2,17 @@
   Bæta við seljanda
 </h3>
 <form action="postNewSeller()">
-  <input type="text" placeholder="Nafn seljanda" required
+  <label>Nafn verslunarinnar/fyrirtækisins/aðilans sem þú ert að skrá</label>
+  <input class="form-control" type="text" placeholder="Nafn seljanda" required
     [(ngModel)]="newSeller.name" [ngModelOptions]="{standalone: true}">
-  Nafn verslunarinnar/fyrirtækisins/aðilans sem þú ert að skrá
-  (krafist)<br>
-  <input type="text" placeholder="Flokkur" 
+  <br>
+  <label>Sá flokkur sem að vörur eða þjónusta seljanda falla undir</label>
+  <input class="form-control" type="text" placeholder="Flokkur" 
   [ngModelOptions]="{standalone: true}" [(ngModel)]="newSeller.category">
-  Sá flokkur sem að vörur eða þjónusta seljanda falla undir
-  (ekki krafist)<br>
-  <input type="text" placeholder="Myndslóð" 
+  <br>
+  <label>Vefslóð að mynd af seljandanum</label>
+  <input class="form-control" type="text" placeholder="Myndslóð" 
   [ngModelOptions]="{standalone: true}" [(ngModel)]="newSeller.imagePath">
-  Vefslóð að mynd af seljandanum (ekki krafist) <br>
+  <br>
   <button (click)="postNewSeller()">Skrá seljanda</button>
 </form>

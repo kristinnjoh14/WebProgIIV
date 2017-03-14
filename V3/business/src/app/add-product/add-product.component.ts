@@ -9,11 +9,17 @@ import { Seller, SellersService, Product } from './../sellers.service';
 export class AddProductComponent implements OnInit {
   newProduct : Product = <Product>{};
   postedProduct : Product = <Product>{};
+  notValid : boolean = false;
   id : number;
   constructor(private service : SellersService, private route : ActivatedRoute) { }
   postNewProduct() {
+    if(!this.newProduct.name || this.newProduct.price < 0 
+    || this.newProduct.quiantityInStock <0) {
+      this.notValid = true;
+      return;
+    }
     this.service.postProduct(this.newProduct, this.id).subscribe(result => {
-    this.postedProduct = result;
+      this.postedProduct = result;
     });
   }
   ngOnInit() {
