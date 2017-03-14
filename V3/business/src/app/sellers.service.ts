@@ -40,14 +40,26 @@ export class SellersService {
     });
   }
   postSeller(newSeller : Seller) : Observable<Seller> {
-    console.log("adding seller to database"); //debug
-    let body = JSON.stringify(newSeller); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions(headers); // Create a request option
+    console.log("adding seller to database");
+    let body = JSON.stringify(newSeller);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions(headers);
     console.log(body);
     return this.http.post(`http://localhost:5000/api/sellers`, body, options)
     .map(response => {
       return <Seller> response.json();
+    });
+  }
+  postProduct(newProduct : Product, id : number) : Observable<Product> {
+    console.log("adding product to database");
+    let body = JSON.stringify(newProduct);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions(headers);
+    console.log(body);
+    //Get ID
+    return this.http.post(`http://localhost:5000/api/sellers/${id}/products`, body, options)
+    .map(response => {
+      return <Product> response.json();
     });
   }
 

@@ -7,14 +7,17 @@ import { Seller, SellersService } from './../sellers.service'
 })
 export class AddSellerComponent implements OnInit {
   newSeller : Seller = <Seller>{};
-  notValidated : boolean = false;
+  postedSeller : Seller = <Seller>{};
   constructor(private service : SellersService) { }
   postNewSeller() {
     if(!this.newSeller.name) {
-      this.notValidated = true;
+      console.log("postNewSeller() was called without a name");
+      return;
     }
     else {
-      this.service.postSeller(this.newSeller);
+      this.service.postSeller(this.newSeller).subscribe(result => {
+      this.postedSeller = result;
+    });
     }
   }
   ngOnInit() {
