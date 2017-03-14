@@ -9,6 +9,7 @@ import { Seller, SellersService, Product } from './../sellers.service';
 export class AddProductComponent implements OnInit {
   newProduct : Product = <Product>{};
   postedProduct : Product = <Product>{};
+  alreadyPosted : boolean = false;
   notValid : boolean = false;
   id : number;
   constructor(private service : SellersService, private route : ActivatedRoute) { }
@@ -18,8 +19,14 @@ export class AddProductComponent implements OnInit {
       this.notValid = true;
       return;
     }
+    else if(this.postedProduct.imagePath == this.newProduct.imagePath &&
+    this.postedProduct.name == this.newProduct.name) {
+      this.alreadyPosted = true;
+      return;
+    }
     this.service.postProduct(this.newProduct, this.id).subscribe(result => {
       this.postedProduct = result;
+      console.log(this.postedProduct.name);
     });
   }
   ngOnInit() {
