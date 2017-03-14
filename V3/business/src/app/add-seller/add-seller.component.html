@@ -15,4 +15,5 @@
   [ngModelOptions]="{standalone: true}" [(ngModel)]="newSeller.imagePath">
   <br>
   <button (click)="postNewSeller()">Skrá seljanda</button>
+  <h1 *ngIf="alreadyPosted">Seljandi er nú þegar skráður</h1>
 </form>

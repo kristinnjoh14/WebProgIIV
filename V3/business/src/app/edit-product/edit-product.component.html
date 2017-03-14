@@ -1,0 +1,27 @@
+<h3>
+  Breyta vöru
+</h3>
+<form action="postNewSeller()">
+  <label>Breytt nafn vörunnar</label>
+  <input class="form-control" type="text" placeholder="Nafn vöru" required
+    [(ngModel)]="product.name" [ngModelOptions]="{standalone: true}">
+    <br>
+  <label>Breytt verð vörunnar</label>
+  <input class="form-control" type="number" placeholder="Verð" 
+  [ngModelOptions]="{standalone: true}" [(ngModel)]="product.price">
+  <p *ngIf="product.price<0"> Verð verður að vera jákvæð tala</p>
+  <br>
+  <label>Nýr fjöldi eintaka af vörunni sem er til á lager</label>
+  <input class="form-control" type="number" placeholder="Fjöldi á lager" 
+  [ngModelOptions]="{standalone: true}" [(ngModel)]="product.quantityInStock">
+  <p *ngIf="product.quantityInStock<0">Lagerstaða verður að vera jákvæð tala</p>
+  <br>
+  <label>Ný vefslóð að mynd af vörunni</label>
+  <input class="form-control" type="text" placeholder="Myndslóð" 
+  [ngModelOptions]="{standalone: true}" [(ngModel)]="product.imagePath">
+  <br>
+  <button (click)="postNewProduct()">Skrá breytingar</button>
+  <h3 *ngIf="notValid">
+    Vinsamlegast farðu yfir að allar upplýsingar hafi verið rétt skráðar.
+  </h3>
+</form>

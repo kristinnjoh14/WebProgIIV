@@ -13,12 +13,16 @@ import { TabsModule } from 'ng2-bootstrap/tabs';
 import { TopTenComponent } from './top-ten/top-ten.component';
 import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { EditSellerComponent } from './edit-seller/edit-seller.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'seller/:id', component: DetailsComponent},
   { path: 'addseller', component: AddSellerComponent },
+  { path: 'seller/:id/editseller', component: EditSellerComponent},
   { path: 'seller/:id/addproduct', component: AddProductComponent},
+  { path: 'seller/:sid/editproduct/:pid', component: EditProductComponent},
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -32,7 +36,9 @@ const appRoutes: Routes = [
     DetailsComponent,
     TopTenComponent,
     AddSellerComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditSellerComponent,
+    EditProductComponent
   ],
   imports: [
     AlertModule.forRoot(),    //ng2-bootstrap

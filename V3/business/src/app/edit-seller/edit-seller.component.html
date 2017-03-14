@@ -1,0 +1,18 @@
+<h3>
+  Breyta seljanda
+</h3>
+<form action="postNewSeller()">
+  <label>Breytt nafn verslunarinnar/fyrirtækisins/aðilans</label>
+  <input class="form-control" type="text" placeholder="Nafn seljanda" required
+    [(ngModel)]="seller.name" [ngModelOptions]="{standalone: true}">
+  <br>
+  <label>Nýr flokkur</label>
+  <input class="form-control" type="text" placeholder="Flokkur" 
+  [ngModelOptions]="{standalone: true}" [(ngModel)]="seller.category">
+  <br>
+  <label>Breytt vefslóð að mynd af seljandanum</label>
+  <input class="form-control" type="text" placeholder="Myndslóð" 
+  [ngModelOptions]="{standalone: true}" [(ngModel)]="seller.imagePath">
+  <br>
+  <button (click)="postChanges()">Skrá breytingar</button>
+</form>

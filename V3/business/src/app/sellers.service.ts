@@ -39,6 +39,23 @@ export class SellersService {
       return <Product[]> response.json();
     });
   }
+  getProductBySellerAndProductId(sid : number, pid : number) : Product {
+    let product : Product = <Product>{};
+    this.getProductsBySellerId(sid).subscribe(result => {
+      let productlist : Product[] = result;
+      productlist.forEach(resP => {
+        if(resP.id == pid) {
+          product.name = resP.name;
+          product.price = resP.price;
+          product.quantitySold = resP.quantitySold;
+          product.quiantityInStock = resP.quiantityInStock;
+          product.imagePath = resP.imagePath;
+          product.id = resP.id;
+        }
+      });
+    });
+    return product;
+  }
   postSeller(newSeller : Seller) : Observable<Seller> {
     return this.http.post(`http://localhost:5000/api/sellers`, newSeller)
     .map(response => {
@@ -50,6 +67,18 @@ export class SellersService {
     .map(response => {
       return <Product> response.json();
     });
+  }
+  editSeller(seller : Seller) : Observable<Seller> {
+    return this.http.put(`http://localhost:5000/api/sellers/${seller.id}`, seller)
+    .map(response => {
+      return <Seller> response.json();
+    })
+  }
+  editProduct(product : Product, sid : number) : Observable<Product> {
+    return this.http.put(`http://localhost:5000/api/sellers/${sid}/products/${product.id}`, product)
+    .map(response => {
+      return <Product> response.json();
+    })
   }
 
 }

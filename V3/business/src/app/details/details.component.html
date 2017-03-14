@@ -2,11 +2,12 @@
 <p>Bransi: {{category}}</p>
 <img id="detailsImgs" src="{{imgpath}}" alt="Picture of the seller" />
 <button><a href="/seller/{{id}}/addproduct">Bæta við vöru</a></button>
+<button><a href="/seller/{{id}}/editseller">Breyta seljanda</a></button>
 <tabset>
   <tab heading="Allar vörur">
     <ul>
       <li *ngFor = "let p of productlist">
-        {{p.name}}<br>
+        {{p.name}}  <button><a href="/seller/{{id}}/editproduct/{{p.id}}">Breyta vöru</a></button><br>
         Verð: {{p.price}} kr.
         <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
         <p *ngIf="p.quantityInStock==0">Varan er uppseld!</p>
