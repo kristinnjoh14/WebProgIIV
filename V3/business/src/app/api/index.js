@@ -102,6 +102,7 @@ app.post("/api/sellers", (req, res) => {
 	// Validation:
 	if (req.body.name == null) {
 		res.statusCode = 400;
+		console.log(req.body);
 		return res.send('Error 400: Seller needs a name!');
 	}
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Seller, SellersService, Product } from './../sellers.service';
 @Component({
   selector: 'app-add-product',
@@ -7,11 +8,18 @@ import { Seller, SellersService, Product } from './../sellers.service';
 })
 export class AddProductComponent implements OnInit {
   newProduct : Product = <Product>{};
-  constructor() { }
+  postedProduct : Product = <Product>{};
+  id : number;
+  constructor(private service : SellersService, private route : ActivatedRoute) { }
   postNewProduct() {
-    console.log(JSON.stringify(this.newProduct));
+    this.service.postProduct(this.newProduct, this.id).subscribe(result => {
+    this.postedProduct = result;
+    });
   }
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
   }
 
 }
