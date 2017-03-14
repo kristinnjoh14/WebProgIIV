@@ -15,6 +15,7 @@ export class EditSellerComponent implements OnInit {
   ActivatedRoute, private toastr : ToastrService) { }
   postChanges() {
     if(!this.seller.name) {
+      this.toastr.warning('Vinsamlegast farðu yfir að allar upplýsingar hafi verið rétt skráðar.', 'Aðgerð hafnað');
       return;
     }
     else if(this.newSeller.category == this.seller.category &&

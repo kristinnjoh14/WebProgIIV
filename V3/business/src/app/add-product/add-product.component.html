@@ -14,15 +14,11 @@
   <label>Fjöldi eintaka af vörunni sem er til á lager</label>
   <input class="form-control" type="number" placeholder="Fjöldi á lager" 
   [ngModelOptions]="{standalone: true}" [(ngModel)]="newProduct.quantityInStock">
-  <p *ngIf="newProduct.quantityInStock<0">Lagerstaða verður að vera jákvæð tala</p>
+  <p *ngIf="newProduct.quantiryInStock<0">Lagerstaða verður að vera jákvæð tala</p>
   <br>
   <label>Vefslóð að mynd af vörunni</label>
   <input class="form-control" type="text" placeholder="Myndslóð" 
   [ngModelOptions]="{standalone: true}" [(ngModel)]="newProduct.imagePath">
   <br>
   <button (click)="postNewProduct()">Skrá vöru</button>
-  <h3 *ngIf="notValid">
-    Vinsamlegast farðu yfir að allar upplýsingar hafi verið rétt skráðar.
-  </h3>
-  <h1 *ngIf="alreadyPosted">Þú varst rétt að enda við að skrá þessa ;)</h1>
 </form>

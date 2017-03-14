@@ -15,7 +15,7 @@ export interface Product {
   name : string;
   price : number;
   quantitySold : number;
-  quiantityInStock : number;
+  quantityInStock : number;
   imagePath : string;
 }
 
@@ -48,7 +48,7 @@ export class SellersService {
           product.name = resP.name;
           product.price = resP.price;
           product.quantitySold = resP.quantitySold;
-          product.quiantityInStock = resP.quiantityInStock;
+          product.quantityInStock = resP.quantityInStock;
           product.imagePath = resP.imagePath;
           product.id = resP.id;
         }
