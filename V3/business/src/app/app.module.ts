@@ -15,6 +15,7 @@ import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditSellerComponent } from './edit-seller/edit-seller.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { ToastrModule } from 'toastr-ng2'
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     TabsModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [SellersService],
   bootstrap: [AppComponent]

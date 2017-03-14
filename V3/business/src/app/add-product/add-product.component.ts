@@ -20,7 +20,9 @@ export class AddProductComponent implements OnInit {
       return;
     }
     else if(this.postedProduct.imagePath == this.newProduct.imagePath &&
-    this.postedProduct.name == this.newProduct.name) {
+    this.postedProduct.name == this.newProduct.name &&
+    this.postedProduct.price == this.newProduct.price &&
+    this.postedProduct.quiantityInStock == this.newProduct.quiantityInStock) {
       this.alreadyPosted = true;
       return;
     }

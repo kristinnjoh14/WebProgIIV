@@ -20,7 +20,7 @@
   <input class="form-control" type="text" placeholder="Myndslóð" 
   [ngModelOptions]="{standalone: true}" [(ngModel)]="product.imagePath">
   <br>
-  <button (click)="postNewProduct()">Skrá breytingar</button>
+  <button (click)="postChanges()">Skrá breytingar</button>
   <h3 *ngIf="notValid">
     Vinsamlegast farðu yfir að allar upplýsingar hafi verið rétt skráðar.
   </h3>

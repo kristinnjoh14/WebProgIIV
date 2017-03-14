@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Seller, SellersService } from './../sellers.service'
+import { Seller, SellersService } from './../sellers.service';
+import { ToastrService } from 'toastr-ng2';
 @Component({
   selector: 'app-edit-seller',
   templateUrl: './edit-seller.component.html',
@@ -10,14 +11,21 @@ export class EditSellerComponent implements OnInit {
   seller : Seller = <Seller>{};
   newSeller : Seller = <Seller>{};
   id : number;
-  constructor(private service : SellersService, private route : ActivatedRoute) { }
+  constructor(private service : SellersService, private route : 
+  ActivatedRoute, private toastr : ToastrService) { }
   postChanges() {
     if(!this.seller.name) {
       return;
     }
+    else if(this.newSeller.category == this.seller.category &&
+    this.newSeller.imagePath == this.seller.imagePath &&
+    this.newSeller.name == this.seller.name){
+      this.toastr.warning('Seljanda hefur þegar verið breytt', 'Aðgerð hafnað');
+    }
     else {
       this.service.editSeller(this.seller).subscribe(result => {
         this.newSeller = result;
+        this.toastr.success('Seljanda hefur verið breytt', 'Aðgerð tókst!');
       });
     }
   }
@@ -29,5 +37,4 @@ export class EditSellerComponent implements OnInit {
       this.seller = result;
     });
   }
-
 }
