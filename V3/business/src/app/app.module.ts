@@ -14,7 +14,6 @@ import { TopTenComponent } from './top-ten/top-ten.component';
 import { AddSellerComponent } from './add-seller/add-seller.component';
 import { AddProductComponent } from './add-product/add-product.component';
 
-
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'seller/:id', component: DetailsComponent},

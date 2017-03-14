@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SellersService, Seller, Product } from './../sellers.service';
-import { TabsModule } from 'ng2-bootstrap/tabs';
 
 @Component({
   selector: 'app-details',
