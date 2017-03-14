@@ -9,7 +9,7 @@
     <h4 *ngIf="noProducts">Seljandi hefur engar vörur skráðar</h4>
     <div class="container-fluid">
     <div class="row">
-    <ul>
+    <ul style="list-style: none;">
       <li *ngFor = "let p of productlist">
         <div class="col-xs-6" class="col-md-4">
         {{p.name}}  <button><a href="/seller/{{id}}/editproduct/{{p.id}}">Breyta vöru</a></button><br>
