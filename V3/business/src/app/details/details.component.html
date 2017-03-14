@@ -11,7 +11,7 @@
     <div class="row">
     <ul>
       <li *ngFor = "let p of productlist">
-        <div class="col-md-8" class="col-xs-6">
+        <div class="col-xs-6" class="col-md-4">
         {{p.name}}  <button><a href="/seller/{{id}}/editproduct/{{p.id}}">Breyta vöru</a></button><br>
         Verð: {{p.price}} kr. <br>
         <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
