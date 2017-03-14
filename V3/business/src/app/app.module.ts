@@ -17,6 +17,7 @@ import { EditSellerComponent } from './edit-seller/edit-seller.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ToastrModule } from 'toastr-ng2';
 import { NotFoundComponent } from './404component/404component.component';
+import { CategorysComponent } from './categorys/categorys.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     AddProductComponent,
     EditSellerComponent,
     EditProductComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CategorysComponent
   ],
   imports: [
     AlertModule.forRoot(),    //ng2-bootstrap
