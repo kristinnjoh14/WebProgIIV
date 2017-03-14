@@ -25,8 +25,7 @@ export class AddProductComponent implements OnInit {
       return;
     }
     this.service.postProduct(this.newProduct, this.id).subscribe(result => {
-      this.postedProduct = result;
-      console.log(this.postedProduct.name);
+      this.postedProduct = this.newProduct;
     });
   }
   ngOnInit() {
