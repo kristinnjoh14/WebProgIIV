@@ -13,6 +13,7 @@ export class DetailsComponent implements OnInit {
   imgpath : string;
   category : string;
   productlist : Product[];
+  leaveThisPage : boolean = false;
   constructor(private route: ActivatedRoute, private service: SellersService) {}
 
   getSellerProducts() {
@@ -29,7 +30,9 @@ export class DetailsComponent implements OnInit {
       this.imgpath = result.imagePath;
       this.category = result.category;
       this.getSellerProducts();
-    });
+    },
+    (err)=>this.leaveThisPage = true
+    );
   }
 
 }

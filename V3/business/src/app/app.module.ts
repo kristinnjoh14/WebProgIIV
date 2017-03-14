@@ -27,7 +27,8 @@ const appRoutes: Routes = [
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+  { path: '**', redirectTo: '/404', component: 404Component}
   ]
 
 @NgModule({
