@@ -1,5 +1,4 @@
 <div *ngIf="!leaveThisPage">
-  <div class="col-md-6">
 <p>Nafn: {{name}}</p>
 <p>Bransi: {{category}}</p>
 <img id="detailsImgs" src="{{imgpath}}" alt="Picture of the seller" />
@@ -8,20 +7,25 @@
 <tabset>
   <tab heading="Allar vörur">
     <h4 *ngIf="noProducts">Seljandi hefur engar vörur skráðar</h4>
+    <div class="container-fluid">
+    <div class="row">
     <ul>
       <li *ngFor = "let p of productlist">
+        <div class="col-md-3">.
         {{p.name}}  <button><a href="/seller/{{id}}/editproduct/{{p.id}}">Breyta vöru</a></button><br>
         Verð: {{p.price}} kr. <br>
         <p *ngIf="p.quantityInStock>0">Á lager: {{p.quantityInStock}}</p>
         <p *ngIf="p.quantityInStock==0">Varan er uppseld!</p>
         <img id="prodImgs" src="{{p.imagePath}}" alt="Image of the product" />
+        </div>
       </li>
     </ul>
+  </div>
+</div>
   </tab>
   <tab heading="Topp tíu vörur" onselect="console.log('what the shit, man\n')">
     <app-top-ten></app-top-ten>
   </tab>
 </tabset>
-</div>
 </div>
 <h1 *ngIf="leaveThisPage">404 Seller not found!</h1>
