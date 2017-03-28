@@ -3,8 +3,8 @@ const Bird = function(x, y, context){
     this.y = y;
     this.context = context;
     this.gravity = 0;
-    this.width = 90;
-    this.height = 64;
+    this.width = 80;
+    this.height = 68;
     this.spites = [document.getElementById('bird1'), document.getElementById('bird2'), document.getElementById('bird3'), document.getElementById('bird4')];
     var that = this;
     this.counter = 0;
@@ -15,19 +15,19 @@ const Bird = function(x, y, context){
             console.log('spacebar');
         }
     });
-};
+}
 
 Bird.prototype.update = function(){
     this.counter++;
-    if(this.counter % 10 == 0){
+    if(this.counter % 3 == 0){
         this.index = (this.index +1) % this.spites.length;
     }
     this.y += this.gravity;
-    this.gravity += 2;
+    this.gravity += 1.25;
 };
 
 Bird.prototype.render = function(){
     let horizontal = this.x - this.width/2;
     let vertical = this.y - this.height/2;
-    this.context.drawImage(this.spites[this.index], horizontal, vertical,);
+    this.context.drawImage(this.spites[this.index], horizontal, vertical, this.width, this.height);
 };

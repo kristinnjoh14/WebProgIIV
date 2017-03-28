@@ -6,6 +6,10 @@ const Enviroment = function(canvas, context){
     this.backgroundSpeed = 2;
     this.backgroundWidth = 288;
     this.backgroundImage = document.getElementById('background');
+    this.forgroundPos = 0;
+    this.forgroundImage = document.getElementById('forground');
+    this.forgroundSpeed = 2;
+    this.forgroundWidth = 336;
 }
 
 Enviroment.prototype.update = function(){

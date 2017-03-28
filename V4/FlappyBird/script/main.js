@@ -8,7 +8,7 @@ window.onload = function(){
     const context = canvas.getContext('2d');
 
     const enviroment = new Enviroment(canvas, context);
-    const bird = new Bird(50, 250, context);
+    const bird = new Bird(250, 250, context);
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
