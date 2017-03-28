@@ -23,7 +23,7 @@ window.onload = function(){
     var pipeLength = 280;
     var spawnGap = canvas.width / 5;
 
-    //music.play();
+    music.play();
     start();
     gameLoop();
     context.fillStyle = "#FFFFFF";
@@ -50,6 +50,7 @@ window.onload = function(){
             }
             pipes[i].render();
         }
+        drawScore(context, canvas);
         if(!bird.crashed) {
             bird.update(pipes);
         }
@@ -65,13 +66,18 @@ window.onload = function(){
                 pipes[i].speed = 0;
             }
             //start();
+            document.getElementById('restart').style.visibility = "visible";
         }
+        document.getElementById('restart').onclick = start;
         window.requestAnimationFrame(gameLoop);
     }
     function start() {
         bird = new Bird(250, 100, context);
         score = 0;
+        pipeSpeed = 3.5;
         pipes = [];
+        environment.forgroundSpeed = 3.5;
+        environment.backgroundSpeed = 2;
         for(i = 0; i < pipeCount; i++) {
             y += Math.floor(Math.random()*randomness);
             pipes.push(new Pipe(800 + i * spawnGap, y, pipeSpeed, pipeLength, context));
@@ -80,20 +86,12 @@ window.onload = function(){
             pipes.push(topPipe);
             y = baseY;
         }
+        document.getElementById('restart').style.visibility = "hidden";
     }
-    /*function startscreen() {
-        //set up button to set restart to true
-        for(;;) {
-            if(restart) {
-                restart = false;
-                return;
-            }
-        }
+    function drawScore(context, canvas){
+      context.font="30px Verdana";
+      context.textAlign="center";
+      context.fillText(score, canvas.width/2, canvas.height/4);
     }
-    function fail() {
-        startscreen();
-        start();
-        gameLoop();
-    }*/
 };
 
