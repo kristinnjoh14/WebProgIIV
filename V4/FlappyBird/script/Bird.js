@@ -13,8 +13,13 @@ const Bird = function(x, y, context){
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 32){
             that.gravity = -14;
-            console.log('spacebar');
         }
+    });
+    window.addEventListener('touchstart', function(e){
+        that.gravity = -14;
+    });
+    window.addEventListener('click', function(e){
+        that.gravity = -14;
     });
 }
 
