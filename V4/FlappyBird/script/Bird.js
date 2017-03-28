@@ -51,20 +51,20 @@ Bird.prototype.Crash = function(pipes){
             let y0 = pipe.y + pipe.length;
             let birdass = this.x;
             let birdhead = this.y - this.height/2;
-            if(birdass > x0 && birdass < x1 && birdhead < y0){
+            if(birdass + this.width/2 > x0 && birdass < x1 && birdhead < y0){
                 return true;
             }
         }
         else{
             let y2 = pipe.y;
             let birdass = this.x;
-            let birdhead = this.y + this.height/2;
-            if(birdass > x0 && birdass < x1 && birdhead > y2/* || bird2 > x0 && bird2 < x1 && birdb2 > y2*/){
+            let birdbelly = this.y + this.height/2;
+            if(birdass + this.width/2 > x0 && birdass < x1 && birdbelly > y2/* || bird2 > x0 && bird2 < x1 && birdb2 > y2*/){
                 return true;
             }
         }
     }
-    if(this.y + this.height/2 > 384) {
+    if(this.y + this.height/2  > 384) {
         return true;
     }
 }

@@ -10,6 +10,7 @@ const Enviroment = function(canvas, context){
     this.forgroundImage = document.getElementById('forground');
     this.forgroundSpeed = 3.5;
     this.forgroundWidth = 336;
+    //this.context.font = "30px Arial";
 }
 
 Enviroment.prototype.updatebg = function(){
@@ -32,8 +33,9 @@ Enviroment.prototype.renderbg = function(){
     }
 }
 
-Enviroment.prototype.renderfg = function(){
+Enviroment.prototype.renderfg = function(count){
     for(let j = 0; j <= this.canvas.width/this.forgroundWidth+1; j++){
         this.context.drawImage(this.forgroundImage, this.forgroundPos+(j*this.forgroundWidth),384);
     }
+    //this.context.fillText(count.toString(), 500, 400);
 }

@@ -6,6 +6,7 @@ const Pipe = function(x, y, speed, length, context){
     this.context = context;
     this.PipeImage = document.getElementById('pipe');
     this.length = length;
+    this.pointGiven = false;
 }
 
 Pipe.prototype.rotate = function(){
