@@ -15,7 +15,7 @@ const Bird = function(x, y, context){
             console.log('spacebar');
         }
     });
-}
+};
 
 Bird.prototype.update = function(){
     this.counter++;
@@ -24,10 +24,10 @@ Bird.prototype.update = function(){
     }
     this.y += this.gravity;
     this.gravity += 2;
-}
+};
 
 Bird.prototype.render = function(){
     let horizontal = this.x - this.width/2;
     let vertical = this.y - this.height/2;
-    this.context.drawImage(this.spites[this.index], horizontal, vertical);
-}
+    this.context.drawImage(this.spites[this.index], horizontal, vertical,);
+};
