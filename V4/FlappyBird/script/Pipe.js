@@ -1,6 +1,7 @@
 const Pipe = function(x, y, speed, length, context){
     this.x = x;
     this.y = y;
+    this.width = 50;
     this.speed = speed;
     this.context = context;
     this.PipeImage = document.getElementById('pipe');
@@ -17,5 +18,5 @@ Pipe.prototype.update = function(){
 }
 
 Pipe.prototype.render = function(){
-    this.context.drawImage(this.PipeImage,this.x, this.y , 50, this.length);
+    this.context.drawImage(this.PipeImage,this.x, this.y , this.width, this.length);
 }

@@ -7,6 +7,8 @@ window.onload = function(){
 
     const context = canvas.getContext('2d');
 
+    var music = document.getElementById('music');
+
     const enviroment = new Enviroment(canvas, context);
     const bird = new Bird(250, 250, context);
     const pipeCount = 10;
@@ -25,6 +27,7 @@ window.onload = function(){
         pipes.push(topPipe);
         y = baseY;
     }
+    music.play();
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
