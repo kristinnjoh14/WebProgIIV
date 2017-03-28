@@ -17,10 +17,17 @@ Enviroment.prototype.update = function(){
     if(this.backgroundPos < -this.backgroundWidth){
         this.backgroundPos = 0;
     }
+    this.forgroundPos -= this.forgroundSpeed;
+    if(this.forgroundPos < -this.forgroundWidth){
+        this.forgroundPos = 0;
+    }
 }
 
 Enviroment.prototype.render = function(){
     for(let i = 0; i <= this.canvas.width/this.backgroundWidth+1; i++){
      this.context.drawImage(this.backgroundImage, this.backgroundPos+(i*this.backgroundWidth), 0);
+    }
+    for(let j = 0; j <= this.canvas.width/this.forgroundWidth+1; j++){
+        this.context.drawImage(this.forgroundImage, this.forgroundPos+(j*this.forgroundWidth),384);
     }
 }

@@ -3,7 +3,7 @@ window.onload = function(){
 
     const canvas = document.getElementById('canvas');
     canvas.width = window.innerWidth;
-    canvas.height = 384;
+    canvas.height = 384 + 112;
 
     const context = canvas.getContext('2d');
 
