@@ -8,7 +8,7 @@ const Enviroment = function(canvas, context){
     this.backgroundImage = document.getElementById('background');
     this.forgroundPos = 0;
     this.forgroundImage = document.getElementById('forground');
-    this.forgroundSpeed = 2;
+    this.forgroundSpeed = 3;
     this.forgroundWidth = 336;
 }
 

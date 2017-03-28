@@ -9,6 +9,7 @@ window.onload = function(){
 
     const enviroment = new Enviroment(canvas, context);
     const bird = new Bird(250, 250, context);
+    const pipe = new Pipe(384, -50, 40, 200, context);
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
@@ -18,6 +19,8 @@ window.onload = function(){
         enviroment.render();
         bird.update();
         bird.render();
+        pipe.update();
+        pipe.render();
         window.requestAnimationFrame(gameLoop);
     }
 };
