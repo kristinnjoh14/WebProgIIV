@@ -21,8 +21,8 @@ window.onload = function(){
     var spawnGap = canvas.width / 5;
     for(i = 0; i < pipeCount; i++) {
         y += Math.floor(Math.random()*randomness);
-        pipes.push(new Pipe(spawnGap + i * spawnGap, y, pipeSpeed, pipeLength, context));
-        var topPipe = new Pipe(spawnGap + i * spawnGap, y, pipeSpeed, pipeLength, context);
+        pipes.push(new Pipe(800 + i * spawnGap, y, pipeSpeed, pipeLength, context));
+        var topPipe = new Pipe(800 + i * spawnGap, y, pipeSpeed, pipeLength, context);
         topPipe.rotate();
         pipes.push(topPipe);
         y = baseY;
@@ -35,8 +35,12 @@ window.onload = function(){
         context.fillRect(0,0,context.width,context.height);
         enviroment.updatebg();
         enviroment.renderbg();
-        bird.update();
+        bird.update(pipes);
         bird.render();
+        if(bird.crashed){
+            console.log("you lose");
+            return;
+        }
         for(i = 0; i < pipeCount; i++) {
             pipes[i].update();
             if(pipes[i].x < -50) {

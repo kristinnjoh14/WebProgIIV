@@ -9,6 +9,7 @@ const Bird = function(x, y, context){
     var that = this;            //Many cant tell the diffrence between this and that
     this.counter = 0;
     this.index = 0;
+    this.crashed = false;
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 32){
             that.gravity = -14;
@@ -17,13 +18,16 @@ const Bird = function(x, y, context){
     });
 }
 
-Bird.prototype.update = function(){
+Bird.prototype.update = function(pipes){
     this.counter++;
     if(this.counter % 3 == 0){
         this.index = (this.index +1) % this.spites.length;
     }
     this.y += this.gravity;
     this.gravity += 1.4;
+    if(this.Crash(pipes)){
+        this.crashed = true;
+    }
 };
 
 Bird.prototype.render = function(){
@@ -37,3 +41,30 @@ Bird.prototype.render = function(){
 
     this.context.restore();
 };
+
+Bird.prototype.Crash = function(pipes){
+    for(let i = 0; i < pipes.length; i++){
+        let k = pipes[i];
+        let highPipe = k.y <= 0;
+        let x0 = k.x;
+        let x1 = k.x + k.width;
+        let alpha2 = this.x + 30;
+        let beta2 = this.y;
+        if(highPipe){
+            let y0 = k.y + k.length;
+            let alpha = this.x;
+            let beta = this.y - this.height/2;
+            if(alpha > x0 && alpha < x1 && beta < y0 || alpha2 > x0 && alpha2 < x1 && beta2 > y0){
+                return true;
+            }
+        }
+        else{
+            let y2 = k.y;
+            let a = this.x;
+            let b = this.y + this.height/2;
+            if(a > x0 && a < x1 && b > y2 || alpha2 > x0 && alpha2 < x1 && beta2 > y2){
+                return true;
+            }
+        }
+    }
+}
