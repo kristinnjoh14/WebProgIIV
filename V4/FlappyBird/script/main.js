@@ -9,7 +9,11 @@ window.onload = function(){
 
     const enviroment = new Enviroment(canvas, context);
     const bird = new Bird(250, 250, context);
-    const pipe = new Pipe(384, -50, 40, 200, context);
+    const pipeCount = 3;
+    var pipes = [];
+    for(i = 0; i < pipeCount; i++) {
+        pipes.push(new Pipe(500 + i * 500, 350, 3, 200, context));
+    }
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
@@ -19,8 +23,13 @@ window.onload = function(){
         enviroment.render();
         bird.update();
         bird.render();
-        pipe.update();
-        pipe.render();
+        for(i = 0; i < pipeCount; i++) {
+            pipes[i].update();
+            if(pipes[i].x < -50) {
+                pipes[i] = new Pipe(1500, 350, 3, 200, context);
+            }
+            pipes[i].render();
+        }
         window.requestAnimationFrame(gameLoop);
     }
 };

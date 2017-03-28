@@ -1,14 +1,14 @@
-const Pipe = function(x, y, speed, lenght, context){
+const Pipe = function(x, y, speed, length, context){
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.context = context;
     this.PipeImage = document.getElementById('pipe');
-    this.lenght = lenght;
+    this.length = length;
 }
 
 Pipe.prototype.update = function(){
-
+    this.x -= this.speed;
 }
 
 Pipe.prototype.render = function(){
