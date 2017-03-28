@@ -6,7 +6,7 @@ const Bird = function(x, y, context){
     this.width = 80;
     this.height = 68;
     this.spites = [document.getElementById('bird1'), document.getElementById('bird2'), document.getElementById('bird3'), document.getElementById('bird4')];
-    var that = this;
+    var that = this;            //Many cant tell the diffrence between this and that
     this.counter = 0;
     this.index = 0;
     window.addEventListener('keydown', function(e){
@@ -27,7 +27,13 @@ Bird.prototype.update = function(){
 };
 
 Bird.prototype.render = function(){
-    let horizontal = this.x - this.width/2;
-    let vertical = this.y - this.height/2;
+    let horizontal = -this.width/2;
+    let vertical = -this.height/2;
+    this.context.save();
+    this.context.translate(this.x, this.y);
+    let angle = this.gravity/32
+    this.context.rotate(angle);
     this.context.drawImage(this.spites[this.index], horizontal, vertical, this.width, this.height);
+
+    this.context.restore();
 };
