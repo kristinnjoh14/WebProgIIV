@@ -22,11 +22,13 @@ window.onload = function(){
     var y = baseY;
     var pipeLength = 280;
     var spawnGap = canvas.width / 5;
-
+    var lost = false;
+    document.getElementById('unmute').style.visibility = "hidden";
     music.play();
     start();
     gameLoop();
     context.fillStyle = "#FFFFFF";
+
     function gameLoop(){
         context.fillRect(0,0,context.width,context.height);
         environment.updatebg();
@@ -58,18 +60,32 @@ window.onload = function(){
         environment.updatefg();
         environment.renderfg(score);
         if(bird.crashed){
-            //console.log("you lose");
             pipeSpeed = 0;
             environment.backgroundSpeed = 0;
             environment.forgroundSpeed = 0;
             for(i = 0; i < pipeCount; i++) {
                 pipes[i].speed = 0;
             }
-            //start();
+            if(!lost) {
+                document.getElementById('crash').play();
+                lost = true;
+            }
             document.getElementById('restart').style.visibility = "visible";
         }
+        document.getElementById('mute').onclick = mute;
+        document.getElementById('unmute').onclick = unmute;
         document.getElementById('restart').onclick = start;
         window.requestAnimationFrame(gameLoop);
+    }
+    function mute() {
+        music.pause();
+        document.getElementById('mute').style.visibility = "hidden";
+        document.getElementById('unmute').style.visibility = "visible";
+    }
+    function unmute() {
+        music.play();
+        document.getElementById('unmute').style.visibility = "hidden";
+        document.getElementById('mute').style.visibility = "visible";
     }
     function start() {
         bird = new Bird(250, 100, context);
@@ -78,6 +94,7 @@ window.onload = function(){
         pipes = [];
         environment.forgroundSpeed = 3.5;
         environment.backgroundSpeed = 2;
+        lost = false;
         for(i = 0; i < pipeCount; i++) {
             y += Math.floor(Math.random()*randomness);
             pipes.push(new Pipe(800 + i * spawnGap, y, pipeSpeed, pipeLength, context));
