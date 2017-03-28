@@ -38,31 +38,28 @@ Bird.prototype.render = function(){
     let angle = this.gravity/32
     this.context.rotate(angle);
     this.context.drawImage(this.spites[this.index], horizontal, vertical, this.width, this.height);
-
     this.context.restore();
 };
 
 Bird.prototype.Crash = function(pipes){
     for(let i = 0; i < pipes.length; i++){
-        let k = pipes[i];
-        let highPipe = k.y <= 0;
-        let x0 = k.x;
-        let x1 = k.x + k.width;
-        let alpha2 = this.x + 30;
-        let beta2 = this.y;
-        if(highPipe){
-            let y0 = k.y + k.length;
-            let alpha = this.x;
-            let beta = this.y - this.height/2;
-            if(alpha > x0 && alpha < x1 && beta < y0 || alpha2 > x0 && alpha2 < x1 && beta2 > y0){
+        let pipe = pipes[i];
+        let isHigh = pipe.y < 0;
+        let x0 = pipe.x;
+        let x1 = pipe.x + pipe.width;
+        if(isHigh){
+            let y0 = pipe.y + pipe.length;
+            let birdass = this.x;
+            let birdhead = this.y - this.height/2;
+            if(birdass > x0 && birdass < x1 && birdhead < y0){
                 return true;
             }
         }
         else{
-            let y2 = k.y;
-            let a = this.x;
-            let b = this.y + this.height/2;
-            if(a > x0 && a < x1 && b > y2 || alpha2 > x0 && alpha2 < x1 && beta2 > y2){
+            let y2 = pipe.y;
+            let birdass = this.x;
+            let birdhead = this.y + this.height/2;
+            if(birdass > x0 && birdass < x1 && birdhead > y2/* || bird2 > x0 && bird2 < x1 && birdb2 > y2*/){
                 return true;
             }
         }

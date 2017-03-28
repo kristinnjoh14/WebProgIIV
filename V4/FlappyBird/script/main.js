@@ -27,7 +27,7 @@ window.onload = function(){
         pipes.push(topPipe);
         y = baseY;
     }
-    music.play();
+    //music.play();
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
