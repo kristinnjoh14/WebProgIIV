@@ -9,33 +9,47 @@ window.onload = function(){
 
     const enviroment = new Enviroment(canvas, context);
     const bird = new Bird(250, 250, context);
-    const pipeCount = 6;
+    const pipeCount = 10;
     var pipes = [];
+    var pipeSpeed = 3.5;
+    var randomness = 180;
+    var baseY = 180;
+    var y = baseY;
+    var pipeLength = 280;
+    var spawnGap = canvas.width / 5;
     for(i = 0; i < pipeCount; i++) {
-        pipes.push(new Pipe(500 + i * 500, 350, 3, 200, context));
-        var topPipe = new Pipe(500 + i * 500, 350, 3, 200, context);
+        y += Math.floor(Math.random()*randomness);
+        pipes.push(new Pipe(spawnGap + i * spawnGap, y, pipeSpeed, pipeLength, context));
+        var topPipe = new Pipe(spawnGap + i * spawnGap, y, pipeSpeed, pipeLength, context);
         topPipe.rotate();
         pipes.push(topPipe);
+        y = baseY;
     }
     gameLoop();
 
     context.fillStyle = "#FFFFFF";
     function gameLoop(){
         context.fillRect(0,0,context.width,context.height);
-        enviroment.update();
-        enviroment.render();
+        enviroment.updatebg();
+        enviroment.renderbg();
         bird.update();
         bird.render();
         for(i = 0; i < pipeCount; i++) {
             pipes[i].update();
             if(pipes[i].x < -50) {
-                pipes[i] = new Pipe(1500 , 350, 3, 200, context);
+                if(i % 2 == 0) {
+                    y += Math.floor(Math.random()*randomness);
+                }
+                pipes[i] = new Pipe((pipeCount/2)*spawnGap , y, pipeSpeed, pipeLength, context);
                 if(i % 2 != 0) {
                     pipes[i].rotate();
+                    y = baseY;
                 }
             }
             pipes[i].render();
         }
+        enviroment.updatefg();
+        enviroment.renderfg();
         window.requestAnimationFrame(gameLoop);
     }
 };

@@ -9,7 +9,7 @@ const Pipe = function(x, y, speed, length, context){
 
 Pipe.prototype.rotate = function(){
     this.PipeImage = document.getElementById('topPipe');
-    this.y -= 350;
+    this.y -= 400;
 }
 
 Pipe.prototype.update = function(){

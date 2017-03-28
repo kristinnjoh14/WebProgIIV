@@ -8,25 +8,31 @@ const Enviroment = function(canvas, context){
     this.backgroundImage = document.getElementById('background');
     this.forgroundPos = 0;
     this.forgroundImage = document.getElementById('forground');
-    this.forgroundSpeed = 3;
+    this.forgroundSpeed = 3.5;
     this.forgroundWidth = 336;
 }
 
-Enviroment.prototype.update = function(){
+Enviroment.prototype.updatebg = function(){
     this.backgroundPos -= this.backgroundSpeed;
     if(this.backgroundPos < -this.backgroundWidth){
         this.backgroundPos = 0;
     }
+}
+
+Enviroment.prototype.updatefg = function(){
     this.forgroundPos -= this.forgroundSpeed;
     if(this.forgroundPos < -this.forgroundWidth){
         this.forgroundPos = 0;
     }
 }
 
-Enviroment.prototype.render = function(){
+Enviroment.prototype.renderbg = function(){
     for(let i = 0; i <= this.canvas.width/this.backgroundWidth+1; i++){
      this.context.drawImage(this.backgroundImage, this.backgroundPos+(i*this.backgroundWidth), 0);
     }
+}
+
+Enviroment.prototype.renderfg = function(){
     for(let j = 0; j <= this.canvas.width/this.forgroundWidth+1; j++){
         this.context.drawImage(this.forgroundImage, this.forgroundPos+(j*this.forgroundWidth),384);
     }
