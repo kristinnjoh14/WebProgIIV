@@ -52,15 +52,18 @@ window.onload = function(){
         }
         if(!bird.crashed) {
             bird.update(pipes);
-            bird.render();
         }
+        bird.render();
         environment.updatefg();
         environment.renderfg(score);
         if(bird.crashed){
             //console.log("you lose");
             pipeSpeed = 0;
             environment.backgroundSpeed = 0;
-            environment.foregroundspeed = 0;
+            environment.forgroundSpeed = 0;
+            for(i = 0; i < pipeCount; i++) {
+                pipes[i].speed = 0;
+            }
             //start();
         }
         window.requestAnimationFrame(gameLoop);
