@@ -64,4 +64,7 @@ Bird.prototype.Crash = function(pipes){
             }
         }
     }
+    if(this.y + this.height/2 > 384) {
+        return true;
+    }
 }

@@ -29,7 +29,7 @@ window.onload = function(){
     }
     //music.play();
     gameLoop();
-
+    start();
     context.fillStyle = "#FFFFFF";
     function gameLoop(){
         context.fillRect(0,0,context.width,context.height);
