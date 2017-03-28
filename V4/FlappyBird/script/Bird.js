@@ -3,15 +3,15 @@ const Bird = function(x, y, context){
     this.y = y;
     this.context = context;
     this.gravity = 0;
-    this.width = 80;
-    this.height = 68;
+    this.width = 52;
+    this.height = 39;
     this.spites = [document.getElementById('bird1'), document.getElementById('bird2'), document.getElementById('bird3'), document.getElementById('bird4')];
     var that = this;            //Many cant tell the diffrence between this and that
     this.counter = 0;
     this.index = 0;
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 32){
-            that.gravity = -16;
+            that.gravity = -14;
             console.log('spacebar');
         }
     });
@@ -23,7 +23,7 @@ Bird.prototype.update = function(){
         this.index = (this.index +1) % this.spites.length;
     }
     this.y += this.gravity;
-    this.gravity += 1.25;
+    this.gravity += 1.4;
 };
 
 Bird.prototype.render = function(){

@@ -9,10 +9,13 @@ window.onload = function(){
 
     const enviroment = new Enviroment(canvas, context);
     const bird = new Bird(250, 250, context);
-    const pipeCount = 3;
+    const pipeCount = 6;
     var pipes = [];
     for(i = 0; i < pipeCount; i++) {
         pipes.push(new Pipe(500 + i * 500, 350, 3, 200, context));
+        var topPipe = new Pipe(500 + i * 500, 350, 3, 200, context);
+        topPipe.rotate();
+        pipes.push(topPipe);
     }
     gameLoop();
 
@@ -26,7 +29,10 @@ window.onload = function(){
         for(i = 0; i < pipeCount; i++) {
             pipes[i].update();
             if(pipes[i].x < -50) {
-                pipes[i] = new Pipe(1500, 350, 3, 200, context);
+                pipes[i] = new Pipe(1500 , 350, 3, 200, context);
+                if(i % 2 != 0) {
+                    pipes[i].rotate();
+                }
             }
             pipes[i].render();
         }

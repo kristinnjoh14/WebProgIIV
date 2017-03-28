@@ -7,6 +7,11 @@ const Pipe = function(x, y, speed, length, context){
     this.length = length;
 }
 
+Pipe.prototype.rotate = function(){
+    this.PipeImage = document.getElementById('topPipe');
+    this.y -= 350;
+}
+
 Pipe.prototype.update = function(){
     this.x -= this.speed;
 }
