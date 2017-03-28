@@ -24,7 +24,7 @@ Bird.prototype.update = function(pipes){
         this.index = (this.index +1) % this.spites.length;
     }
     this.y += this.gravity;
-    this.gravity += 1.4;
+    this.gravity += 1.2;
     if(this.Crash(pipes)){
         this.crashed = true;
     }

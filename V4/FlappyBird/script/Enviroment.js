@@ -1,4 +1,4 @@
-const Enviroment = function(canvas, context){
+Enviroment = function(canvas, context){
     this.canvas = canvas;
     this.context = context;
     this.backgroundPos = 0;

@@ -9,9 +9,10 @@ window.onload = function(){
 
     var music = document.getElementById('music');
 
-    const enviroment = new Enviroment(canvas, context);
+    environment = new Enviroment(canvas, context);
     bird = new Bird(250, 100, context);
     var score = 0;
+    var restart = false;
 
     const pipeCount = 10;
     var pipes = [];
@@ -28,8 +29,8 @@ window.onload = function(){
     context.fillStyle = "#FFFFFF";
     function gameLoop(){
         context.fillRect(0,0,context.width,context.height);
-        enviroment.updatebg();
-        enviroment.renderbg();
+        environment.updatebg();
+        environment.renderbg();
         for(i = 0; i < pipeCount; i++) {
             pipes[i].update();
             if(pipes[i].x < -50) {
@@ -44,18 +45,23 @@ window.onload = function(){
             }
             if(pipes[i].x < 200 && !pipes[i].pointGiven) {
                 score++;
+                console.log(score);
                 pipes[i].pointGiven = true;
             }
             pipes[i].render();
         }
-        bird.update(pipes);
-        bird.render();
-        enviroment.updatefg();
-        enviroment.renderfg(score);
+        if(!bird.crashed) {
+            bird.update(pipes);
+            bird.render();
+        }
+        environment.updatefg();
+        environment.renderfg(score);
         if(bird.crashed){
-            console.log("you lose");
-            startscreen();
-            return;
+            //console.log("you lose");
+            pipeSpeed = 0;
+            environment.backgroundSpeed = 0;
+            environment.foregroundspeed = 0;
+            //start();
         }
         window.requestAnimationFrame(gameLoop);
     }
@@ -72,13 +78,19 @@ window.onload = function(){
             y = baseY;
         }
     }
-    function startscreen() {
-        window.addEventListener('keydown', function(e){
-            if(e.keyCode == 32){
-                start();
-                gameLoop();
+    /*function startscreen() {
+        //set up button to set restart to true
+        for(;;) {
+            if(restart) {
+                restart = false;
+                return;
             }
-        });
+        }
     }
+    function fail() {
+        startscreen();
+        start();
+        gameLoop();
+    }*/
 };
 

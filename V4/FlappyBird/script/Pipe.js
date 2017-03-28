@@ -1,4 +1,4 @@
-const Pipe = function(x, y, speed, length, context){
+Pipe = function(x, y, speed, length, context){
     this.x = x;
     this.y = y;
     this.width = 50;
@@ -11,7 +11,8 @@ const Pipe = function(x, y, speed, length, context){
 
 Pipe.prototype.rotate = function(){
     this.PipeImage = document.getElementById('topPipe');
-    this.y -= 400;
+    this.y -= 430;
+    this.pointGiven = true;
 }
 
 Pipe.prototype.update = function(){
