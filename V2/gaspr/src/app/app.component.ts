@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ServerService } from './server.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 })
 export class AppComponent {
   title = 'Gaspr';
+  constructor(service : ServerService) {
+    
+  }
 }

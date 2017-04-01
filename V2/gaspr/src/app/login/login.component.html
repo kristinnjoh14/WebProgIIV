@@ -3,9 +3,10 @@
 	<div class="wrapper">
 		<form action="#" name="Login_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">Please choose a unique nickname</h3>			  
-			  <input type="text" class="form-control" name="Username" placeholder="Nickname" required="" autofocus="" />
+			  <input class="form-control" [(ngModel)]=userName placeholder="Nickname" [ngModelOptions]="{standalone: true}" required autofocus />
 			 
-			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
-		</form>			
+			  <button class="btn btn-lg btn-primary btn-block" (click)="onLogin()">Login</button>  			
+		  <h4 *ngIf='nameTaken'>Someone is already called that, you unoriginal swine</h4>
+    </form>			
 	</div>
 </div>
