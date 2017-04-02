@@ -22,6 +22,7 @@ export interface Room {
 
 @Injectable()
 export class ServerService {
+  userName: string;
   socket: any;
   constructor() {
     this.socket = io('http://localhost:8080');
@@ -36,6 +37,7 @@ export class ServerService {
         if (!succeeded) { obs.next(succeeded); }
         else {
           console.log("user has been added");
+          this.userName = userName;
           obs.next(succeeded);
         }
       });
@@ -43,18 +45,47 @@ export class ServerService {
     return observable;
   }
 
-  getRooms() : Observable<String[]> {
+  getRooms(): Observable<String[]> {
     let observable = new Observable<String[]>(obs => {
       console.log("requesting roomlist");
       this.socket.emit('rooms');
       this.socket.on('roomlist', (list) => {
-          let roomList : String[] = [];
-          for(var room in list) {
+        let roomList: String[] = [];
+        for (var room in list) {
+          if (list.hasOwnProperty(room)) {
             roomList.push(room);
           }
-          obs.next(roomList);
         }
+        obs.next(roomList);
+      }
       );
+    });
+    return observable;
+  }
+
+  joinRoom(roomName: String) {
+    let observable = new Observable(obs => {
+      var param = {
+        room: roomName,
+        pass: ""
+      }
+      this.socket.emit('joinroom', param, function (a, b) {
+        console.log("joining room");
+      });
+    });
+    return observable;
+  }
+
+  addRoom(roomName: String) : Observable<boolean> {
+    const observable = new Observable(obs => {
+      //TODO: Validate
+      var param = {
+        room: roomName
+      }
+      this.socket.emit('joinroom', param, function (a: boolean, b) {
+        obs.next(a);
+        
+      });
     });
     return observable;
   }

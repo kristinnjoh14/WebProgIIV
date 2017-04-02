@@ -1,5 +1,7 @@
 <h1>
   {{title}}
+  <br/>
+  <p *ngIf="this.server.userName">Logged in as {{this.server.userName}}</p>
 </h1>
 <router-outlet></router-outlet>
 <alert type="success">App running on ng2-bootstrap</alert>

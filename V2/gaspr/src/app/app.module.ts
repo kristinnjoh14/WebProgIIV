@@ -10,20 +10,23 @@ import { NotFoundComponent } from './404component/404component.component';
 import { LoginComponent } from './login/login.component';
 import { ServerService } from './server.service';
 import { HomeComponent } from './home/home.component';
+import { RoomComponent } from './room/room.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: '**', component: NotFoundComponent}
-  ]
+  { path: 'room/:id', component: RoomComponent },
+  { path: '**', component: NotFoundComponent }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RoomComponent
   ],
   imports: [
     AlertModule.forRoot(),

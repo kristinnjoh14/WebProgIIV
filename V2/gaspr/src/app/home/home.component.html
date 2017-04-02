@@ -1,5 +1,14 @@
-<ul>
-  <li *ngFor="let room of rooms">
-    {{room}}
-  </li>
-</ul>
+<table class="table-striped">
+  <thead>
+    <th>Room</th>
+    <th>Topic</th>
+  </thead>
+  <tbody *ngFor="let room of rooms">
+    <tr>
+      <th><a [routerLink]="['/room',room]">{{room}}</a></th>
+      <th><a>{{room.topic}}</a></th>
+    </tr>
+  </tbody>
+</table>
+<input [(ngModel)]="newRoom" />
+<button (click)="addRoom()">Add {{newRoom}}</button>
