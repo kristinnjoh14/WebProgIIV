@@ -10,9 +10,6 @@
       "check-space"
     ],
     "curly": true,
-    "wrap-iife": true,
-    "no-arg": true,
-    "no-conditional-assignment": false,
     "eofline": true,
     "forin": true,
     "import-blacklist": [true, "rxjs"],
@@ -33,6 +30,7 @@
       "static-before-instance",
       "variables-before-functions"
     ],
+    "no-arg": true,
     "no-bitwise": true,
     "no-console": [
       true,
