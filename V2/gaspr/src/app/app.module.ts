@@ -9,10 +9,12 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './404component/404component.component';
 import { LoginComponent } from './login/login.component';
 import { ServerService } from './server.service';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: '**', component: NotFoundComponent}
   ]
 
@@ -20,7 +22,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     AlertModule.forRoot(),

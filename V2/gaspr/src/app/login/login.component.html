@@ -2,11 +2,12 @@
 <div class = "container">
 	<div class="wrapper">
 		<form action="#" name="Login_Form" class="form-signin">       
-		    <h3 class="form-signin-heading">Please choose a unique nickname</h3>			  
+		    <h3 class="form-signin-heading">Please choose a unique nickname<br/>(20 characters)</h3>			  
 			  <input class="form-control" [(ngModel)]=userName placeholder="Nickname" [ngModelOptions]="{standalone: true}" required autofocus />
 			 
 			  <button class="btn btn-lg btn-primary btn-block" (click)="onLogin()">Login</button>  			
 		  <h4 *ngIf='nameTaken'>Someone is already called that, you unoriginal swine</h4>
+		  <h4 *ngIf='nameTooLong'>Name may only be a maximum of 20 characters long</h4>
     </form>			
 	</div>
 </div>

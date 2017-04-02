@@ -8,16 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userName : string = 'kiddi';
+  userName : string;
   nameTaken : boolean = false;
+  nameTooLong : boolean = false;
   constructor(private server : ServerService, private router : Router) { }
   onLogin() {
-    this.server.login(this.userName).subscribe(succeeded => {
-      this.nameTaken = !succeeded;
-      if(succeeded) {
-        this.router.navigate(['/home']);
-      }
-    });
+    if(this.userName.length < 21) {
+      this.nameTooLong = false;
+      this.server.login(this.userName).subscribe(succeeded => {
+        this.nameTaken = !succeeded;
+        if(succeeded) {
+          this.router.navigate(['/home']);
+        }
+      });
+    }
+    else {
+      this.nameTooLong = true;
+      this.nameTaken = false;
+    }
   }
   ngOnInit() {
   }
