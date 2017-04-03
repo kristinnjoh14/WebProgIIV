@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'room/:id', component: RoomComponent },
   { path: 'room/:id/:imagineThisIsEncryptedOrSth', component: RoomComponent },
   { path: '**', component: NotFoundComponent }
-]
+];
 
 @NgModule({
   declarations: [

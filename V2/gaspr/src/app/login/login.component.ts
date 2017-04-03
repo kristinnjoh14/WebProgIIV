@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   userName: string;
-  nameTaken: boolean = false;
-  nameTooLong: boolean = false;
+  nameTaken = false;
+  nameTooLong = false;
   constructor(private server: ServerService, private router: Router) { }
   onLogin() {
     if (this.userName.length < 21) {
@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home']);
         }
       });
-    }
-    else {
+    } else {
       this.nameTooLong = true;
       this.nameTaken = false;
     }

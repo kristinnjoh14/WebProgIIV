@@ -14,37 +14,29 @@ export class HomeComponent implements OnInit {
 
   constructor(private server: ServerService, private router: Router) {
     if (this.server.userName) {
-      server.getRooms().subscribe(list => {
+      server.getRooms(). subscribe(list => {
         this.rooms = list;
       });
-    }
-    else {
+    } else {
       router.navigate(['login']);
-    }
-  }
-  foo() {
-    console.log(this.rooms);
-    for (var room in this.rooms) {
-      console.log(room);
     }
   }
   joinRoom(room: String, pass: String) {
     console.log(room);
     this.server.joinRoom(room, pass).subscribe(succeeded => {
       if (succeeded) {
-        console.log(room, "joined");
-        //this.router.navigate(['room,',room]);
+        console.log(room, 'joined');
+        // this.router.navigate(['room,',room]);
+      } else {
+        console.log(room, 'was not joined');
       }
-      else {
-        console.log(room, "was not joined");
-      }
-    })
+    });
   }
   addRoom() {
     if (this.newRoom) {
       this.server.addRoom(this.newRoom).subscribe(succeeded => {
         if (succeeded === true) {
-          //this.newRoom = "";
+          // this.newRoom = "";
           this.router.navigate(['room', this.newRoom]);
         }
       });
