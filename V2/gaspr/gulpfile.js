@@ -1,25 +1,13 @@
-var gulp = require('gulp');
-var ts = require('gulp-typescript');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+var gulp = require('gulp')
+var concat = require('gulp-concat')
+var uglify = require('gulp-uglify')
+var ngAnnotate = require('gulp-ng-annotate')
 
-gulp.task('ts', function () {
-    gulp.src('src/**/*.ts')
-        .pipe(ts({
-            noImplicitAny: true,
-            out: 'output.js'
-        }))
-        .pipe(gulp.dest('./tmp/ts'));
-});
-
-gulp.task('default', ['ts'], function() {
-    gulp.src(['vendor/**/*.js', './tmp/ts/output.js'])
-        .pipe(sourcemaps.init())
-        .pipe(uglify(uglifyOptions).on('error', function(uglify) {
-        console.error(uglify.message);
-        console.error("Line "+uglify.lineNumber);
-        this.emit('end');
-    }))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./dist/'));
-});
+gulp.task('js', function () {
+  gulp.src(['src/**/module.js', 'src/**/*.js'])
+    .pipe(concat('app.js'))
+    .pipe(ngAnnotate())
+    .pipe(uglify())
+    .pipe(gulp.dest('.'))
+})
+gulp.task('default',['js']);

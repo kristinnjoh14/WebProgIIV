@@ -115,7 +115,7 @@ export class ServerService {
   }
   // Here, there must be some other way to get data,
   // I wish I could just map to interface
-  // Bailing in favor of studying for exam, 
+  // Bailing in favor of studying for exam,
   // will yield more grade-value I think
   getMsg(room: String): Observable<String[]> {
     const observable = new Observable(obs => {
