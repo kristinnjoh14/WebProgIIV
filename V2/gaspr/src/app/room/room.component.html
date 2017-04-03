@@ -1,3 +1,16 @@
-<p>
-  room works!
-</p>
+<h2>
+  {{room}}
+</h2>
+<form action="checkPassword()" *ngIf="!validated && passwordRequired">
+  <input [(ngModel)]="pass" [ngModelOptions]="{standalone: true}" placeholder="Password" />
+  <button (click)="checkPassword()">validate</button>
+</form>
+<div *ngIf="validated">
+  <div id="chatDisplay">
+    <p *ngFor="let msg of messageHistory">{{msg}}</p>
+  </div>
+  <form (submit)="sendMsg()">
+    <input [(ngModel)]="message" [ngModelOptions]="{standalone: true}" />
+    <button (click)="sendMsg()">send</button>
+  </form>
+</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { ServerService } from './server.service';
 
 @Component({
@@ -9,7 +9,9 @@ import { ServerService } from './server.service';
 })
 export class AppComponent {
   title = 'Gaspr';
-  constructor(private server : ServerService) {
-
+  constructor(private router : Router, private server : ServerService) {
+  }
+  goToLogin() {
+    this.router.navigate(['login']);
   }
 }

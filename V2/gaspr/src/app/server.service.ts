@@ -63,14 +63,15 @@ export class ServerService {
     return observable;
   }
 
-  joinRoom(roomName: String) {
+  joinRoom(roomName: String, pass : String) {
     let observable = new Observable(obs => {
       var param = {
         room: roomName,
-        pass: ""
+        pass: pass
       }
-      this.socket.emit('joinroom', param, function (a, b) {
-        console.log("joining room");
+      this.socket.emit('joinroom', param, function (a : boolean, b) {
+        console.log("joining", roomName);
+        obs.next(a);
       });
     });
     return observable;
@@ -78,13 +79,40 @@ export class ServerService {
 
   addRoom(roomName: String) : Observable<boolean> {
     const observable = new Observable(obs => {
-      //TODO: Validate
+      if(!roomName) {
+        return;
+      }
       var param = {
         room: roomName
       }
       this.socket.emit('joinroom', param, function (a: boolean, b) {
         obs.next(a);
-        
+      });
+    });
+    return observable;
+  }
+
+  sendMsg(msg : String, room : String) {
+    var param = {
+      msg : msg,
+      roomName : room
+    }
+    console.log("attempting to send",msg,"to",room);
+    this.socket.emit('sendmsg', param, succeeded => {
+      console.log("message sent");
+    });
+  }
+
+  getMsg(room : String) : Observable<String[]> {
+    const observable = new Observable(obs => {
+      this.socket.on('updatechat', room, this.userName, (messages) => {
+        let msgHistory : String[] = [];
+        for (var msg in messages) {
+          if (messages.hasOwnProperty(msg)) {
+            msgHistory.push(msg);
+          }
+        }
+        obs.next(msgHistory);
       });
     });
     return observable;

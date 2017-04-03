@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   rooms: String[];
   newRoom: String;
+  password: String;
+
   constructor(private server: ServerService, private router: Router) {
     if (this.server.userName) {
       server.getRooms().subscribe(list => {
         this.rooms = list;
-      })
+      });
     }
     else {
       router.navigate(['login']);
@@ -26,11 +28,12 @@ export class HomeComponent implements OnInit {
       console.log(room);
     }
   }
-  joinRoom(room: String) {
+  joinRoom(room: String, pass: String) {
     console.log(room);
-    this.server.joinRoom(room).subscribe(succeeded => {
+    this.server.joinRoom(room, pass).subscribe(succeeded => {
       if (succeeded) {
         console.log(room, "joined");
+        //this.router.navigate(['room,',room]);
       }
       else {
         console.log(room, "was not joined");
@@ -38,9 +41,9 @@ export class HomeComponent implements OnInit {
     })
   }
   addRoom() {
-    if (this.newRoom.length > 0) {
+    if (this.newRoom) {
       this.server.addRoom(this.newRoom).subscribe(succeeded => {
-        if(succeeded ===true) {
+        if (succeeded === true) {
           //this.newRoom = "";
           this.router.navigate(['room', this.newRoom]);
         }

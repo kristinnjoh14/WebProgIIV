@@ -17,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'room/:id', component: RoomComponent },
+  { path: 'room/:id/:imagineThisIsEncryptedOrSth', component: RoomComponent },
   { path: '**', component: NotFoundComponent }
 ]
 

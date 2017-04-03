@@ -1,14 +1,23 @@
 <table class="table-striped">
   <thead>
     <th>Room</th>
-    <th>Topic</th>
+    <th>Password</th>
   </thead>
   <tbody *ngFor="let room of rooms">
     <tr>
-      <th><a [routerLink]="['/room',room]">{{room}}</a></th>
-      <th><a>{{room.topic}}</a></th>
+      <th>
+        <a *ngIf="password"[routerLink]="['/room',room,password]">{{room}}</a>
+        <a *ngIf="!password"[routerLink]="['/room',room]">{{room}}</a>
+      </th>
+      <th><input [(ngModel)]="password" /></th>
+      <th>
+        <button *ngIf="password" [routerLink]="['/room',room,password]">join</button>
+        <button *ngIf="!password" [routerLink]="['/room',room]">join</button>
+      </th>
     </tr>
   </tbody>
 </table>
-<input [(ngModel)]="newRoom" />
-<button (click)="addRoom()">Add {{newRoom}}</button>
+<form action="addRoom()">
+  <input [(ngModel)]="newRoom" [ngModelOptions]="{standalone: true}"/>
+  <button (click)="addRoom()">Add {{newRoom}}</button>
+</form>
